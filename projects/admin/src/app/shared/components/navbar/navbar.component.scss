@@ -1,0 +1,31 @@
+nav {
+  background-color: #ca085a;
+  padding: 0 20px;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  h1 {
+    font-size: 27px;
+    font-weight: bold;
+    color: #e3d510 !important;
+    margin: 0;
+  }
+  #navbarSupportedContent {
+    gap: 20px;
+  }
+  ul {
+    list-style: none;
+    gap: 20px;
+  }
+  a {
+    font-size: 20px;
+    color: #fff !important;
+    &.active {
+      background-color: #910340;
+      color: #fff;
+      padding: 7px 20px;
+    }
+  }
+}

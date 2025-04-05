@@ -1,0 +1,16 @@
+nav {
+  background-color: #ca085a;
+}
+nav .navbar-brand {
+  font-size: 27px;
+  font-weight: bold;
+  color: #e3d510 !important;
+}
+nav a {
+  font-size: 20px;
+  color: #FFF !important;
+}
+nav a.active {
+  background-color: #910340;
+  color: #FFF;
+}/*# sourceMappingURL=app.component.css.map */

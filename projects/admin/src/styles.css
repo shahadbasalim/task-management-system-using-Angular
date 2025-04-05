@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #bc1059;
+  --white: #fff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-column {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a {
+  all: unset;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+.main-btn {
+  background-color: var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  color: var(--white);
+}
+
+.btn-warning {
+  background-color: #f9c710;
+  color: var(--white);
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn-error {
+  background-color: #e43237;
+  color: var(--white);
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}/*# sourceMappingURL=styles.css.map */
