@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Login } from '../context/DTOs';
-
+import { environment } from '../../../environments/environment.prod';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoginService {
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(model: Login) {
-    return this.http.post('https://crud-a325.onrender.com/auth/login', model);
+    return this.http.post(
+      environment.baseApi.replace('tasks', 'auth') + '/login',
+      model
+    );
   }
 }

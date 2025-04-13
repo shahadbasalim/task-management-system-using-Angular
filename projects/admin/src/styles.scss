@@ -2,6 +2,7 @@
 :root {
   --primary-color: #bc1059;
   --white: #fff;
+  --border: #ddd;
 }
 body {
   margin: 0;
@@ -22,7 +23,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-a {
+a, button {
   all: unset;
 }
 

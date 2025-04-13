@@ -9,19 +9,22 @@ import { AuthLayoutComponent } from './layout/components/auth-layout/auth-layout
 export const routes: Routes = [
   {
     path: '',
+    component: AuthLayoutComponent, // لا يستخدم الـ Navbar
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+    ],
+  },
+  {
+    path: '',
     component: MainLayoutComponent, // يستخدم الـ Layout مع الـ Navbar
     children: [
       { path: 'users', component: UsersComponent },
       { path: 'add-task', component: AddTaskComponent },
       { path: 'list-tasks', component: ListTasksComponent },
+
     ],
   },
-  {
-    path: '',
-    component: AuthLayoutComponent, // لا يستخدم الـ Navbar
-    children: [
-      { path: 'login', component: LoginComponent },
-      { path: '**', redirectTo: 'login', pathMatch: 'full' },
-    ],
-  },
+  // اغيرها واحط صفحة الخطا
+  { path: '**', redirectTo: 'login', pathMatch: 'full' },
 ];

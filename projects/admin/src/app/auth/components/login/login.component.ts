@@ -9,6 +9,9 @@ import {
 } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
+import { ToastService } from '../../../shared/services/toast.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { LoginResponse } from '../../context/DTOs';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +25,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private service: LoginService,
-    private router: Router
+    private router: Router,
+    private toast: ToastService,
+    private spinner: NgxSpinnerService
   ) {}
   ngOnInit(): void {
     this.createForm();
@@ -43,13 +48,19 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.spinner.show();
     this.service.login(this.loginForm.value).subscribe(
-      (res) => {
+      (res: any) => {
         console.log(res);
+        localStorage.setItem('token', res.token);
         this.router.navigate(['/list-tasks']);
+        this.spinner.hide();
+        this.toast.show('Login successful', 'success');
       },
       (error) => {
         console.error(error);
+        this.toast.show('Login failed', 'error');
+        this.spinner.hide();
       }
     );
   }

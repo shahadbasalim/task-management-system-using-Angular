@@ -1,11 +1,6 @@
 nav {
   background-color: #ca085a;
   padding: 0 20px;
-  .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
   h1 {
     font-size: 27px;
     font-weight: bold;
@@ -14,18 +9,21 @@ nav {
   }
   #navbarSupportedContent {
     gap: 20px;
+    justify-content: flex-end;
   }
   ul {
     list-style: none;
     gap: 20px;
   }
   a {
-    font-size: 20px;
+    font-size: 18px;
     color: #fff !important;
+    transition: transform 0.2s ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+    }
     &.active {
-      background-color: #910340;
-      color: #fff;
-      padding: 7px 20px;
+      text-decoration: underline;
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,75 +9,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
-export interface PeriodicElement {
-  title: string;
-  user: string;
-  deadLineDate: string;
-  status: string;
-}
+import { TasksService } from '../../services/tasks.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastService } from '../../../shared/services/toast.service';
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    status: 'Complete',
-    title: 'Hydrogen',
-    user: '1.0079',
-    deadLineDate: '10-11-2022',
-  },
-  {
-    status: 'In-Prossing',
-    title: 'Helium',
-    user: '4.0026',
-    deadLineDate: '10-11-2022',
-  },
-  {
-    status: 'Complete',
-    title: 'Lithium',
-    user: '6.941',
-    deadLineDate: '10-11-2022',
-  },
-  {
-    status: 'Complete',
-    title: 'Beryllium',
-    user: '9.0122',
-    deadLineDate: '10-11-2022',
-  },
-  {
-    status: 'Complete',
-    title: 'Boron',
-    user: '10.811',
-    deadLineDate: '10-11-2022',
-  },
-  {
-    status: 'Complete',
-    title: 'Carbon',
-    user: '12.010',
-    deadLineDate: '10-11-2022',
-  },
-  {
-    status: 'Complete',
-    title: 'Nitrogen',
-    user: '14.006',
-    deadLineDate: '10-11-2022',
-  },
-  {
-    status: 'Complete',
-    title: 'Oxygen',
-    user: '15.999',
-    deadLineDate: '10-11-2022',
-  },
-  {
-    status: 'Complete',
-    title: 'Fluorine',
-    user: '18.998',
-    deadLineDate: '10-11-2022',
-  },
-  {
-    status: 'Complete',
-    title: 'Neon',
-    user: '20.179',
-    deadLineDate: '10-11-2022',
-  },
-];
 @Component({
   selector: 'app-list-tasks',
   imports: [
@@ -88,6 +23,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     MatTableModule,
     MatNativeDateModule,
     CommonModule,
+    MatDialogModule,
   ],
   templateUrl: './list-tasks.component.html',
   styleUrl: './list-tasks.component.scss',
@@ -97,11 +33,11 @@ export class ListTasksComponent implements OnInit {
     'position',
     'title',
     'user',
-    'deadLineDate',
+    'deadline',
     'status',
     'actions',
   ];
-  dataSource = ELEMENT_DATA;
+  dataSource: any = [];
   tasksFilter!: FormGroup;
   users: any = [
     { name: 'Moahmed', id: 1 },
@@ -114,29 +50,81 @@ export class ListTasksComponent implements OnInit {
     { name: 'Complete', id: 1 },
     { name: 'In-Prossing', id: 2 },
   ];
-  constructor(public dialog: MatDialog, private fb: FormBuilder) {}
+  constructor(
+    private service: TasksService,
+    public dialog: MatDialog,
+    private spinner: NgxSpinnerService,
+    private toast: ToastService
+  ) {}
 
   ngOnInit(): void {
-    this.createform();
+    this.getAllTasks();
   }
 
-  createform() {
-    this.tasksFilter = this.fb.group({
-      title: [''],
-      userId: [''],
-      fromDate: [''],
-      toDate: [''],
+  getAllTasks() {
+    this.spinner.show();
+    this.service.getAllTasks().subscribe(
+      (res: any) => {
+        console.log(res);
+        this.dataSource = this.mappingTasks(res.tasks);
+        this.spinner.hide();
+      },
+      (error) => {
+        console.error(error);
+        this.spinner.hide();
+        this.toast.show('An error occurred', 'error');
+      }
+    );
+  }
+
+  mappingTasks(data: any[]) {
+    let newTasks = data.map((item) => {
+      return {
+        ...item,
+        user: item.userId.username,
+      };
     });
+    return newTasks;
   }
 
-  getAllTasks() {}
   addTask() {
     const dialogRef = this.dialog.open(AddTaskComponent, {
-      width: '750px',
+      width: '700px',
+      height: '500px',
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      if (result == true) {
+        this.getAllTasks();
+      }
+    });
+  }
+
+
+  deleteTask(id: any) {
+    this.spinner.show();
+    this.service.deleteTask(id).subscribe(
+      (res) => {
+        this.spinner.hide();
+        this.toast.show('task deleted successfully', 'success');
+        this.getAllTasks();
+      },
+      (error) => {
+        this.spinner.hide();
+        this.toast.show('An error occurred', 'error');
+      }
+    );
+  }
+
+  updateTask(element: any) {
+    const dialogRef = this.dialog.open(AddTaskComponent, {
+      width: '700px',
+      height: '500px',
+      data: element,
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result == true) {
         this.getAllTasks();
       }
     });
