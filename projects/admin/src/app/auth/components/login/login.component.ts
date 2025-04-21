@@ -10,12 +10,12 @@ import {
 import { LoginService } from '../../services/login.service';
 import { Router } from '@angular/router';
 import { ToastService } from '../../../shared/services/toast.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { LoginResponse } from '../../context/DTOs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
-  imports: [MatInputModule, MatFormFieldModule, ReactiveFormsModule],
+  imports: [MatInputModule, MatFormFieldModule, ReactiveFormsModule, TranslateModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
     private service: LoginService,
     private router: Router,
     private toast: ToastService,
-    private spinner: NgxSpinnerService
   ) {}
   ngOnInit(): void {
     this.createForm();
@@ -48,20 +47,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.spinner.show();
     this.service.login(this.loginForm.value).subscribe(
       (res: any) => {
         console.log(res);
         localStorage.setItem('token', res.token);
         this.router.navigate(['/list-tasks']);
-        this.spinner.hide();
         this.toast.show('Login successful', 'success');
-      },
-      (error) => {
-        console.error(error);
-        this.toast.show('Login failed', 'error');
-        this.spinner.hide();
       }
     );
   }
+
+  
 }

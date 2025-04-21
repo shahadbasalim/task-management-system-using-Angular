@@ -1,0 +1,43 @@
+{
+  "login": {
+    "title": "تسجيل الدخول",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "login": "دخول"
+  },
+
+  "register": {
+    "title": "إنشاء حساب",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "register": "تسجيل"
+  },
+
+  "navbar": {
+    "title": "مدير المهام",
+    "all-tasks": "جميع المهام",
+    "logout": "تسجيل الخروج"
+  },
+
+  "tasks": {
+    "deadline": "تاريخ الانتهاء",
+    "description": "الوصف"
+  },
+
+
+  "general": {
+    "loading": "Loading",
+    "required": "this field is required",
+    "img": "Image",
+    "five-characters": "Title must be at least 5 characters",
+    "select-image": "Select Image",
+    "create": "Create",
+    "update": "Update",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No",
+    "details": "تفاصيل",
+    "complete": "مكتمل"
+  }
+}

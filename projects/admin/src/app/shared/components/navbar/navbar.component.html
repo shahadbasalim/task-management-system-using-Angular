@@ -1,21 +1,30 @@
 <nav class="navbar navbar-expand-lg navbar-light">
-  <div class="container ">
-    <h1 class="navbar-brand">Tasks</h1>
-    <div class="collapse navbar-collapse flex" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto flex">
+  <div class="container flex">
+    <h1 class="navbar-brand">{{ "navbar.title" | translate }}</h1>
+    <div class="flex" id="navbarSupportedContent">
+      <ul class="mr-auto flex">
         <li class="nav-item active">
-          <a class="nav-link" routerLink="/list-tasks" routerLinkActive="active"
-            >All-Tasks
+          <a
+            class="nav-link"
+            routerLink="/list-tasks"
+            routerLinkActive="active"
+          >
+            {{ "navbar.all-tasks" | translate }}
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/users" routerLinkActive="active"
-            >Users</a
+          <a class="nav-link" routerLink="/users" routerLinkActive="active">
+            {{ "navbar.users" | translate }}</a
           >
         </li>
       </ul>
-      <div class="nav-item">
-        <a class="nav-link" routerLink="/login">Logout</a>
+      <div class="nav-item d-flex gap-3">
+        <a class="nav-link" routerLink="/login" (click)="logout()">
+          {{ "navbar.logout" | translate }}</a
+        >
+        <a class="nav-link" (click)="changeLanguage()">{{
+          lang == "en" ? "عربي" : "EN"
+        }}</a>
       </div>
     </div>
   </div>

@@ -1,6 +1,6 @@
 <div class="dialog-wrapper px-2 py-3">
   <header>
-    <h5>Are You Sure That You Want To Discard Your Changes ?</h5>
+    <h5>{{ "tasks.discard-change" | translate }}</h5>
   </header>
 
   <footer>
@@ -10,7 +10,7 @@
         class="btn btn-success py-1 px-5 mx-2"
         (click)="confirm()"
       >
-        Yes
+        {{ "general.yes" | translate }}
       </button>
 
       <button
@@ -18,7 +18,7 @@
         class="btn btn-danger py-1 px-5"
         (click)="close()"
       >
-        No
+        {{ "general.no" | translate }}
       </button>
     </div>
   </footer>

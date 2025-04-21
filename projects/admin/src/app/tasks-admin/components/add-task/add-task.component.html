@@ -1,6 +1,15 @@
 <div class="p-4 dialog">
   <header class="d-flex justify-content-between align-items-center">
-    <h1 class="m-0">{{ data ? "Update Task" : "Add New Task" }}</h1>
+    <!-- <h1 class="m-0">{{ data ? "Update Task" : "Add New Task" }}</h1> -->
+    <h1 class="m-0">
+      <h1 class="m-0">
+        {{
+          data
+            ? ("tasks.update-task" | translate)
+            : ("tasks.add-new-task" | translate)
+        }}
+      </h1>
+    </h1>
     <button mat-flat-button class="text-danger" (click)="close()">
       <mat-icon>cancel</mat-icon>
     </button>
@@ -9,7 +18,7 @@
     <div class="row mt-3">
       <div class="col-md-12">
         <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Title</mat-label>
+          <mat-label>{{ "tasks.title" | translate }}</mat-label>
           <input matInput placeholder="title" formControlName="title" />
         </mat-form-field>
         <div
@@ -20,16 +29,16 @@
           "
         >
           <div *ngIf="newTaskForm.get('title')?.errors?.['required']">
-            Title is required
+            {{ "general.required" | translate }}
           </div>
           <div *ngIf="newTaskForm.get('title')?.errors?.['minlength']">
-            Title must be at least 5 characters
+            {{ "general.five-characters" | translate }}
           </div>
         </div>
       </div>
       <div class="col-md-12">
         <mat-form-field appearance="outline" class="w-100">
-          <mat-label>User</mat-label>
+          <mat-label> {{ "tasks.user" | translate }}</mat-label>
           <mat-select formControlName="userId">
             <mat-option *ngFor="let user of users" [value]="user?.id">
               {{ user?.name }}
@@ -44,12 +53,12 @@
           "
         >
           <div *ngIf="newTaskForm.get('userId')?.errors?.['required']">
-            User is required
+            {{ "general.required" | translate }}
           </div>
         </div>
       </div>
       <div class="col-md-12 my-3">
-        <label class="btn btn-primary" for="selectFile">Select Image</label>
+        <label class="btn btn-primary" for="selectFile"> {{ "general.select-image" | translate }}</label>
         <input
           type="file"
           class="control-form"
@@ -66,13 +75,13 @@
           "
         >
           <div *ngIf="newTaskForm.get('image')?.errors?.['required']">
-            Image is required
+            {{ "general.required" | translate }}
           </div>
         </div>
       </div>
       <div class="col-md-12">
         <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Deadline Date</mat-label>
+          <mat-label>{{ "tasks.deadline" | translate }}</mat-label>
           <input
             matInput
             [matDatepicker]="picker"
@@ -93,14 +102,14 @@
           "
         >
           <div *ngIf="newTaskForm.get('deadline')?.errors?.['required']">
-            Deadline is required
+            {{ "general.required" | translate }}
           </div>
         </div>
       </div>
 
       <div class="col-md-12">
         <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Description</mat-label>
+          <mat-label>{{ "tasks.description" | translate }}</mat-label>
           <textarea
             matInput
             placeholder="task description ...."
@@ -115,7 +124,7 @@
           "
         >
           <div *ngIf="newTaskForm.get('description')?.errors?.['required']">
-            Description is required
+            {{ "general.required" | translate }}
           </div>
         </div>
       </div>
@@ -131,7 +140,7 @@
         [disabled]="newTaskForm.invalid"
         *ngIf="!data"
       >
-        Create
+      {{ "general.create" | translate }}
       </button>
       <button
         mat-flat-button
@@ -140,7 +149,7 @@
         [disabled]="newTaskForm.invalid"
         *ngIf="data"
       >
-        Update
+        {{ "general.update" | translate }}
       </button>
 
       <button
@@ -148,7 +157,7 @@
         class="btn btn-danger py-1 px-5"
         (click)="close()"
       >
-        Close
+        {{ "general.close" | translate }}
       </button>
     </div>
   </footer>

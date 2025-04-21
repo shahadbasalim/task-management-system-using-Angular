@@ -20,8 +20,9 @@ import { CommonModule } from '@angular/common';
 import { TasksService } from '../../services/tasks.service';
 import moment from 'moment';
 import { ToastService } from '../../../shared/services/toast.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { ConfirmationComponent } from '../confirmation/confirmation.component';
+import { TranslateModule } from '@ngx-translate/core';
+import { UsersService } from '../../../manage-users/services/users.service';
 
 @Component({
   selector: 'app-add-task',
@@ -34,6 +35,7 @@ import { ConfirmationComponent } from '../confirmation/confirmation.component';
     MatDialogModule,
     CommonModule,
     ReactiveFormsModule,
+    TranslateModule,
   ],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.scss',
@@ -49,17 +51,33 @@ export class AddTaskComponent implements OnInit {
     public matDialog: MatDialog,
     private service: TasksService,
     private toast: ToastService,
-    private spinner: NgxSpinnerService,
-    @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private userService: UsersService
+  ) {
+    this.getDataFromSubject();
+  }
 
-  users: any = [
-    { name: 'Moahmmed', id: '67f69b0be2be3fc238ba6b6e' },
-    { name: 'Ali', id: '67f69befe2be3fc238ba6b73' },
-  ];
+  users: any = [];
   ngOnInit(): void {
     this.createForm();
   }
+
+  getDataFromSubject() {
+    this.userService.userData.subscribe((res: any) => {
+      this.users = this.usersMapping(res.data);
+    });
+  }
+
+  usersMapping(data: any[]) {
+    let newUsers = data.map((item) => {
+      return {
+        name: item.username,
+        id: item._id,
+      };
+    });
+    return newUsers;
+  }
+
   createForm() {
     this.newTaskForm = this.fb.group({
       title: [
@@ -87,19 +105,11 @@ export class AddTaskComponent implements OnInit {
   }
 
   createTask() {
-    this.spinner.show();
     let model = this.prepereFormData();
-    this.service.createTask(model).subscribe(
-      (res) => {
-        this.dialog.close(true);
-        this.spinner.hide();
-        this.toast.show('task created successfully', 'success');
-      },
-      (error) => {
-        this.spinner.hide();
-        this.toast.show('An error occurred', 'error');
-      }
-    );
+    this.service.createTask(model).subscribe((res) => {
+      this.dialog.close(true);
+      this.toast.show('task created successfully', 'success');
+    });
   }
 
   prepereFormData() {
@@ -118,19 +128,11 @@ export class AddTaskComponent implements OnInit {
   }
 
   updateTask() {
-    this.spinner.show();
     let model = this.prepereFormData();
-    this.service.updateTask(this.data._id, model).subscribe(
-      (res) => {
-        this.dialog.close(true);
-        this.spinner.hide();
-        this.toast.show('task updated successfully', 'success');
-      },
-      (error) => {
-        this.spinner.hide();
-        this.toast.show('An error occurred', 'error');
-      }
-    );
+    this.service.updateTask(this.data._id, model).subscribe((res) => {
+      this.dialog.close(true);
+      this.toast.show('task updated successfully', 'success');
+    });
   }
 
   close() {
@@ -145,10 +147,10 @@ export class AddTaskComponent implements OnInit {
         width: '400px',
       });
 
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result == true) {
-        }
-      });
+      // dialogRef.afterClosed().subscribe((result) => {
+      //   if (result == true) {
+      //   }
+      // });
     } else {
       this.dialog.close();
     }

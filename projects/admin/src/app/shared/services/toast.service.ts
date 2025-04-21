@@ -7,8 +7,9 @@ export class ToastService {
 
   show(
     message: string,
-    type: 'success' | 'error' | 'info' | 'warning' = 'info'
+    type: 'success' | 'error' | 'info' | 'warning' = 'info',
+    title: string = '',
   ) {
-    this.toastr[type](message);
+    this.toastr[type](message, title );
   }
 }

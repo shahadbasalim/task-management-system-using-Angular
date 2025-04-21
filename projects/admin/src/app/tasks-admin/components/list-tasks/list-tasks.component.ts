@@ -10,8 +10,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
 import { TasksService } from '../../services/tasks.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastService } from '../../../shared/services/toast.service';
+import moment from 'moment';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatIconModule } from '@angular/material/icon';
+import { UsersService } from '../../../manage-users/services/users.service';
 
 @Component({
   selector: 'app-list-tasks',
@@ -24,6 +28,9 @@ import { ToastService } from '../../../shared/services/toast.service';
     MatNativeDateModule,
     CommonModule,
     MatDialogModule,
+    NgxPaginationModule,
+    TranslateModule,
+    MatIconModule,
   ],
   templateUrl: './list-tasks.component.html',
   styleUrl: './list-tasks.component.scss',
@@ -37,44 +44,96 @@ export class ListTasksComponent implements OnInit {
     'status',
     'actions',
   ];
+
   dataSource: any = [];
   tasksFilter!: FormGroup;
-  users: any = [
-    { name: 'Moahmed', id: 1 },
-    { name: 'Ali', id: 2 },
-    { name: 'Ahmed', id: 3 },
-    { name: 'Zain', id: 4 },
-  ];
 
-  status: any = [
-    { name: 'Complete', id: 1 },
-    { name: 'In-Prossing', id: 2 },
-  ];
+  users: any = [];
+
+  status: any = [{ name: 'Complete' }, { name: 'In-Progress' }];
+
+  page: number = 1;
+  filteration: any = {
+    page: this.page,
+    limit: 7,
+  };
+  total!: number;
+
+  timeOutId: any;
+
   constructor(
     private service: TasksService,
     public dialog: MatDialog,
-    private spinner: NgxSpinnerService,
-    private toast: ToastService
-  ) {}
+    private toast: ToastService,
+    private userService: UsersService
+  ) {
+    this.getDataFromSubject();
+  }
 
   ngOnInit(): void {
+    this.getUsers();
     this.getAllTasks();
   }
 
+  getUsers() {
+    this.userService.getUsersData();
+  }
+  getDataFromSubject() {
+    this.userService.userData.subscribe((res: any) => {
+      this.users = this.usersMapping(res.data);
+    });
+  }
+
+  usersMapping(data: any[]) {
+    let newUsers = data?.map((item) => {
+      return {
+        name: item.username,
+        id: item._id,
+      };
+    });
+    return newUsers;
+  }
+
+  //filter functions
+  search(event: any) {
+    this.filteration['keyword'] = event.value;
+    this.page = 1;
+    this.filteration['page'] = 1;
+    clearTimeout(this.timeOutId);
+    this.timeOutId = setTimeout(() => {
+      this.getAllTasks();
+    }, 2000);
+  }
+
+  selectUser(event: any) {
+    this.page = 1;
+    this.filteration['page'] = 1;
+    this.filteration['userId'] = event.value;
+    this.getAllTasks();
+  }
+
+  selectStatus(event: any) {
+    this.page = 1;
+    this.filteration['page'] = 1;
+    this.filteration['status'] = event.value;
+    this.getAllTasks();
+  }
+
+  selectDate(event: any, type: string) {
+    this.page = 1;
+    this.filteration['page'] = 1;
+    this.filteration[type] = moment(event.value).format('DD-MM-YYYY');
+    if (type == 'toDate' && this.filteration['toDate'] !== 'Invalid date') {
+      this.getAllTasks();
+    }
+  }
+
   getAllTasks() {
-    this.spinner.show();
-    this.service.getAllTasks().subscribe(
-      (res: any) => {
-        console.log(res);
-        this.dataSource = this.mappingTasks(res.tasks);
-        this.spinner.hide();
-      },
-      (error) => {
-        console.error(error);
-        this.spinner.hide();
-        this.toast.show('An error occurred', 'error');
-      }
-    );
+    this.service.getAllTasks(this.filteration).subscribe((res: any) => {
+      console.log(res);
+      this.dataSource = this.mappingTasks(res.tasks);
+      this.total = res.totalItems;
+    });
   }
 
   mappingTasks(data: any[]) {
@@ -85,6 +144,7 @@ export class ListTasksComponent implements OnInit {
       };
     });
     return newTasks;
+    console.log(newTasks);
   }
 
   addTask() {
@@ -100,20 +160,11 @@ export class ListTasksComponent implements OnInit {
     });
   }
 
-
   deleteTask(id: any) {
-    this.spinner.show();
-    this.service.deleteTask(id).subscribe(
-      (res) => {
-        this.spinner.hide();
-        this.toast.show('task deleted successfully', 'success');
-        this.getAllTasks();
-      },
-      (error) => {
-        this.spinner.hide();
-        this.toast.show('An error occurred', 'error');
-      }
-    );
+    this.service.deleteTask(id).subscribe((res) => {
+      this.toast.show('task deleted successfully', 'success');
+      this.getAllTasks();
+    });
   }
 
   updateTask(element: any) {
@@ -128,5 +179,12 @@ export class ListTasksComponent implements OnInit {
         this.getAllTasks();
       }
     });
+  }
+
+  //pagination
+  changePage(event: any) {
+    this.page = event;
+    this.filteration['page'] = event;
+    this.getAllTasks();
   }
 }

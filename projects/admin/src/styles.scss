@@ -4,10 +4,16 @@
   --white: #fff;
   --border: #ddd;
 }
+
 body {
+  font-family: "IBM Plex Sans Arabic", sans-serif !important;
   margin: 0;
   padding: 0;
 }
+th, td {
+  font-family: "IBM Plex Sans Arabic", sans-serif !important;
+}
+
 .flex {
   display: flex;
   align-items: center;
@@ -51,4 +57,8 @@ button {
   padding: 10px ;
   border-radius: 5px;
   border: none;
+  height: 15px;
+}
+mat-error {
+  color: red  !important;
 }

@@ -1,41 +1,109 @@
 import { Component, OnInit } from '@angular/core';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import {MatTableModule} from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { UsersService } from '../../services/users.service';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CommonModule } from '@angular/common';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { ToastService } from '../../../shared/services/toast.service';
+import { ChangeStatus } from '../../context/DTOs';
 
-export interface PeriodicElement {
-  name: string;
-  email: string;
-  tasksAssigned: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { name: 'Hydrogen', email: "1.0079", tasksAssigned:"10-11-2022" },
-  { name: 'Helium', email: "4.0026", tasksAssigned:"10-11-2022" },
-  { name: 'Lithium', email: "6.941", tasksAssigned:"10-11-2022" },
-  { name: 'Beryllium', email: "9.0122", tasksAssigned:"10-11-2022" },
-  { name: 'Boron', email: "10.811", tasksAssigned:"10-11-2022" },
-  { name: 'Carbon', email: "12.010", tasksAssigned:"10-11-2022" },
-  { name: 'Nitrogen', email: "14.006", tasksAssigned:"10-11-2022" },
-  { name: 'Oxygen', email: "15.999", tasksAssigned:"10-11-2022" },
-  { name: 'Fluorine', email: "18.998", tasksAssigned:"10-11-2022" },
-  {  name: 'Neon', email: "20.179", tasksAssigned:"10-11-2022" },
-];
 @Component({
   selector: 'app-users',
-  imports: [ MatInputModule, MatFormFieldModule, MatTableModule],
+  imports: [
+    MatInputModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatIconModule,
+    NgxPaginationModule,
+    CommonModule,
+    TranslateModule,
+  ],
   templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+  styleUrl: './users.component.scss',
 })
 export class UsersComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'email' ,'tasksAssigned', 'actions'];
-  dataSource = ELEMENT_DATA;
-  constructor() { }
+  displayedColumns: string[] = [
+    'position',
+    'name',
+    'email',
+    'tasksAssigned',
+    'actions',
+  ];
+  dataSource: any = [];
 
-  ngOnInit(): void {
+  page: number = 1;
+  limit: number = 7;
+  totalItems!: number;
+
+  timeOutId: any;
+
+  constructor(
+    private service: UsersService,
+    private translate: TranslateService,
+    private toast: ToastService
+  ) {
+    this.getDataFromSubject();
   }
 
+  ngOnInit(): void {
+    this.getUsers();
+  }
 
+  getUsers() {
+    const model = {
+      page: this.page,
+      limit: this.limit,
+      name: ''
+    }
+    this.service.getUsersData(model)
+  }
 
+  getDataFromSubject() {
+    this.service.userData.subscribe((res: any) => {
+      this.dataSource = res.data;
+      this.totalItems = res.total;
+    });
+  }
+
+  deleteUser(id: string, index: number) {
+    if (this.dataSource[index].assignedTasks > 0) {
+      this.toast.show(
+        'User Cannot be Deleted as he has assigned tasks',
+        'error'
+      );
+    } else {
+      this.service.deleteUser(id).subscribe((res: any) => {
+        this.getUsers();
+        this.toast.show('User Deleted Successfully', 'success');
+      });
+    }
+  }
+
+  changeUserStatus(status: string, id: string, index: number) {
+    const model: ChangeStatus = {
+      id,
+      status,
+    };
+
+    if (this.dataSource[index].assignedTasks > 0) {
+      this.toast.show(
+        'User Cannot be Deactivated as he has assigned tasks',
+        'error'
+      );
+    } else {
+      this.service.changeStatus(model).subscribe((res: any) => {
+        this.getUsers();
+        this.toast.show('User Status Changed Successfully', 'success');
+      });
+    }
+  }
+
+  //pagination
+  changePage(event: any) {
+    this.page = event;
+    this.getUsers();
+  }
 }

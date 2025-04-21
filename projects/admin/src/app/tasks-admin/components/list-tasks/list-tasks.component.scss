@@ -8,13 +8,18 @@
   }
   form {
     .fields-container {
-      justify-content: center;
-      margin-top: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
       gap: 10px;
       div {
-        width: calc((100% - 30px) / 4);
+        // width: calc((100% - 30px) / 4);
+        width: 220px;
         mat-form-field {
           width: 100%;
+          input {
+            margin: 0 10px;
+            width: 90%;
+          }
         }
       }
     }
@@ -35,10 +40,10 @@
     th {
       background-color: var(--primary-color) !important;
       color: var(--white) !important;
-      text-align: center;
+      text-align: center !important;
     }
     td {
-      text-align: center;
+      text-align: center !important;
       img {
         width: 70px;
         height: 70px;
@@ -53,4 +58,27 @@
 
 .w-20 {
   width: 20% !important;
+}
+::ng-deep .mat-calendar,
+mat-select,
+mat-option {
+  background-color: var(--white) !important;
+  border-radius: 6px;
+}
+::ng-deep .mat-calendar {
+  border: 2px solid var(--border);
+}
+
+
+
+::ng-deep .mat-calendar-body-in-range::before {
+  background-color: #8080804d !important; // لون أفتح للمدى
+}
+::ng-deep .mat-calendar-body-selected {
+  background-color: var(--primary-color) !important; // لون التاريخ المختار
+  color: var(--white) !important;
+
+}
+.my-pagination ::ng-deep .ngx-pagination .current {
+  background: var(--primary-color);
 }

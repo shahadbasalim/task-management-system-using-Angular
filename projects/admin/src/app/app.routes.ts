@@ -5,6 +5,7 @@ import { AddTaskComponent } from './tasks-admin/components/add-task/add-task.com
 import { ListTasksComponent } from './tasks-admin/components/list-tasks/list-tasks.component';
 import { MainLayoutComponent } from './layout/components/main-layout/main-layout.component';
 import { AuthLayoutComponent } from './layout/components/auth-layout/auth-layout.component';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,7 @@ export const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent, // يستخدم الـ Layout مع الـ Navbar
+    canActivateChild: [authGuard],
     children: [
       { path: 'users', component: UsersComponent },
       { path: 'add-task', component: AddTaskComponent },
