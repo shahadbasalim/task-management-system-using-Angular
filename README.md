@@ -2,7 +2,7 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
 #admin:
-https://task-management-system-admin.vercel.app/login
+https://browser-eight-chi.vercel.app/login
 #users: 
 https://task-management-system-users.vercel.app/login
 ## Development server
