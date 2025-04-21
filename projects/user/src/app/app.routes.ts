@@ -24,7 +24,7 @@ export const routes: Routes = [
     component: MainLayoutComponent, // يستخدم الـ Layout مع الـ Navbar
     canActivateChild: [authGuard],
     children: [
-      { path: '', component: ListTasksComponent },
+      { path: 'list-tasks', component: ListTasksComponent },
       { path: 'task-details/:id', component: TaskDetailsComponent },
 
     ],
