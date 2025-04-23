@@ -1,9 +1,9 @@
 # Works
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
-# admin:
+# Liv Demo for admin interface:
 https://task-management-system-using-angular-omega.vercel.app/login
-# users: 
+# Liv Demo for users interface: 
 https://task-management-system-using-angular-et5a.vercel.app/login
 
 ## Development server
