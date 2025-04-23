@@ -1,10 +1,11 @@
 # Works
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
-#admin:
+# admin:
 https://task-management-system-using-angular-omega.vercel.app/login
-#users: 
-https://task-management-system-using-angular-et5a.vercel.app/login
+# users: 
+task-management-system-using-angular-et5a.vercel.app
+
 ## Development server
 
 To start a local development server, run:
