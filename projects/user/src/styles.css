@@ -1,1 +1,99 @@
-/* You can add global styles to this file, and also import other style files *//*# sourceMappingURL=styles.css.map */
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --primary-color: #b5838d;
+  --white: #fff;
+  --border: #ddd;
+}
+
+body {
+  font-family: "IBM Plex Sans Arabic", sans-serif !important;
+  margin: 0;
+  padding: 0;
+}
+
+th, td {
+  font-family: "IBM Plex Sans Arabic", sans-serif !important;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-column {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+a, button {
+  all: unset;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+a {
+  color: #4a90e2;
+}
+
+.main-btn {
+  background-color: var(--primary-color);
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  color: var(--white);
+}
+
+.secondary-btn {
+  background-color: #d4af7f;
+  color: var(--white);
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  height: 20px;
+  margin: 0 5px;
+}
+
+.btn-warning {
+  background-color: #d66767;
+  color: var(--white);
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  height: 20px;
+  margin: 0 5px;
+}
+
+.btn-green {
+  background-color: #6fbf73;
+  color: var(--white);
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  height: 20px;
+  margin: 0 5px;
+}
+
+mat-error {
+  color: rgb(214, 65, 65) !important;
+}
+
+.toast-success {
+  background-color: #45c18a !important;
+  color: #fff !important;
+}
+
+.toast-error {
+  background-color: #d66767 !important;
+  color: #fff !important;
+}/*# sourceMappingURL=styles.css.map */

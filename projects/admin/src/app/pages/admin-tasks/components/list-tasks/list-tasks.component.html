@@ -1,0 +1,175 @@
+<div class="list-tasks flex-center">
+  <div class="container">
+    <div>
+      <div class="add-task-btn flex">
+        <button class="main-btn" mat-raised-button (click)="addTask()">
+          {{ "tasks.addTask" | translate }}
+        </button>
+      </div>
+      <form>
+        <div class="fields-container flex-center">
+          <div class="col-md-3 field">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>{{ "tasks.byTitle" | translate }}</mat-label>
+              <input
+                matInput
+                placeholder="title search"
+                (keyup)="search($event.target)"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>{{ "tasks.byUser" | translate }}</mat-label>
+              <mat-select (selectionChange)="selectUser($event)">
+                <mat-option *ngFor="let user of users" [value]="user?.id">
+                  {{ user?.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>{{ "tasks.status" | translate }}</mat-label>
+              <mat-select (selectionChange)="selectStatus($event)">
+                <mat-option *ngFor="let item of status" [value]="item?.name">
+                  {{ "tasks." + item?.name | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-md-3">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>{{ "tasks.dateRange" | translate }}</mat-label>
+              <mat-date-range-input [rangePicker]="picker">
+                <input
+                  matStartDate
+                  placeholder="Start date"
+                  (dateChange)="selectDate($event, 'fromDate')"
+                />
+                <input
+                  matEndDate
+                  placeholder="End date"
+                  (dateChange)="selectDate($event, 'toDate')"
+                />
+              </mat-date-range-input>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="listBox">
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8 w-100 mt-2"
+      >
+        <!-- img Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "general.img" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element; let index = index">
+            <img
+              [src]="'https://crud-a325.onrender.com/' + element.image"
+              alt="photo"
+            />
+          </td>
+        </ng-container>
+
+        <!-- title Column -->
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "tasks.title" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        </ng-container>
+
+        <!-- users Column -->
+        <ng-container matColumnDef="user">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "tasks.user" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.userId.username }}
+          </td>
+        </ng-container>
+
+        <!-- deadline Column -->
+        <ng-container matColumnDef="deadline">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "tasks.deadline" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.deadline }}</td>
+        </ng-container>
+
+        <!-- status Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>
+            {{ "tasks.status" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+        </ng-container>
+
+        <!-- actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef class="w-20">
+            {{ "tasks.actions" | translate }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              class="secondary-btn"
+              mat-raised-button
+              (click)="updateTask(element)"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-raised-button
+              class="btn-warning my-2"
+              (click)="deleteTask(element._id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="
+            let row;
+            columns: displayedColumns
+              | paginate
+                : {
+                    id: 'tasks',
+                    itemsPerPage: 7,
+                    currentPage: page,
+                    totalItems: totalItems
+                  }
+          "
+        ></tr>
+      </table>
+      <div
+        class="d-flex justify-content-center mt-3"
+        *ngIf="dataSource.length > 0"
+      >
+        <pagination-controls
+          class="my-pagination"
+          (pageChange)="changePage($event)"
+          id="tasks"
+          previousLabel=""
+          nextLabel=""
+        ></pagination-controls>
+      </div>
+      <div *ngIf="dataSource.length === 0" class="no-data-message">
+        {{ "tasks.noData" | translate }}
+      </div>
+    </div>
+  </div>
+</div>

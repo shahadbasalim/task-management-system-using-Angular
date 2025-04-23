@@ -2,6 +2,7 @@
   "login": {
     "title": "Login",
     "email": "Email",
+    "invalid-email": "Invalid Email",
     "password": "Password",
     "login": "Login"
   },
@@ -17,9 +18,11 @@
     "addTask": "Add Task",
     "Complete": "Complete",
     "In-Progress": "In-Progress",
-    "search": "Search",
+    "byTitle": "Search By Title",
     "byUser": "Search By User",
     "byStatus": "Search By Status",
+    "byName": "Search By Name",
+
     "dateRange": "Enter Date Range",
     "title": "Title",
     "user": "User",
@@ -31,10 +34,13 @@
     "add-new-task": "Add New Task",
     "update-task": "Update Task",
     "description": "Description",
-    "discard-change": "Are You Sure That You Want To Discard Your Changes ?"
+    "discard-change": "Are You Sure That You Want To Discard Your Changes ?",
+    "name": "الاسم",
+    "tasksAssigned"	: "Tasks Assigned"
   },
 
   "users": {},
+
 
   "general": {
     "loading": "Loading",
@@ -46,7 +52,14 @@
     "update": "Update",
     "close": "Close",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "error": "Error",
+    "page-not-found": "Page Not Found",
+    "return": "Return To Home",
+    "number": "Number",
+    "email": "Email",
+    "active": "Active",
+    "inactive": "Inactive"
   },
 
   "toaster": {},

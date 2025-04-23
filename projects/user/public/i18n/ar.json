@@ -2,16 +2,21 @@
   "login": {
     "title": "تسجيل الدخول",
     "email": "البريد الإلكتروني",
+    "invalid-email": "البريد الإلكتروني غير صحيح",
     "password": "كلمة المرور",
-    "login": "دخول"
+    "login": "دخول",
+    "create-account": "إنشاء حساب؟"
+
   },
 
   "register": {
     "title": "إنشاء حساب",
-    "email": "البريد الإلكتروني",
-    "password": "كلمة المرور",
     "confirmPassword": "تأكيد كلمة المرور",
-    "register": "تسجيل"
+    "register": "تسجيل",
+    "username": "اسم المستخدم",
+    "passwordNotMatch": "كلمة المرور غير متطابقة",
+    "createAccount": "إنشاء حساب",
+    "haveAccount": "هل لديك حساب؟"
   },
 
   "navbar": {
@@ -22,13 +27,15 @@
 
   "tasks": {
     "deadline": "تاريخ الانتهاء",
-    "description": "الوصف"
+    "description": "الوصف",
+    "Complete": "مكتملة",
+    "In-Progress": "قيد التنفيذ",
+    "status": "الحالة"
   },
 
 
   "general": {
     "loading": "Loading",
-    "required": "this field is required",
     "img": "Image",
     "five-characters": "Title must be at least 5 characters",
     "select-image": "Select Image",
@@ -38,6 +45,10 @@
     "yes": "Yes",
     "no": "No",
     "details": "تفاصيل",
-    "complete": "مكتمل"
+    "complete": "مكتمل",
+    "error": "خطأ",
+    "page-not-found": "الصفحة غير موجودة",
+    "return": "رجوع",
+    "required": "هذا الحقل مطلوب"
   }
 }

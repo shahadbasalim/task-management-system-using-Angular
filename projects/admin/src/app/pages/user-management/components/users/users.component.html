@@ -1,0 +1,130 @@
+<div class="list-users flex-center">
+  <div class="container">
+    <div>
+      <form>
+        <div class="row mt-3 fields-container">
+          <div class="col-md-3 filed">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>{{ "tasks.byName" | translate }}</mat-label>
+              <input matInput placeholder="title search" (keyup)="search($event.target)" />
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+      <div class="listBox">
+        <table
+          mat-table
+          [dataSource]="dataSource"
+          class="mat-elevation-z8 w-100 mt-2"
+        >
+          <!-- number Column -->
+          <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "general.number" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element; let index = index">
+              {{ (page - 1) * limit + index + 1 }}
+            </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "tasks.name" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.username }}</td>
+          </ng-container>
+
+          <!-- email Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "general.email" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+          </ng-container>
+
+          <!--task assigned Column -->
+          <ng-container matColumnDef="tasksAssigned">
+            <th mat-header-cell *matHeaderCellDef>
+              {{ "tasks.tasksAssigned" | translate }}
+            </th>
+            <td mat-cell *matCellDef="let element">
+              {{ element.assignedTasks }}
+            </td>
+          </ng-container>
+
+          <!-- Actions Column -->
+
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="w-20">
+              {{ "tasks.actions" | translate }}
+            </th>
+            <td
+              mat-cell
+              *matCellDef="let element; let index = index"
+              class="flex-center"
+            >
+              <button
+                mat-raised-button
+                class="btn-warning m-2 flex"
+                (click)="deleteUser(element._id, index)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+              <button
+                mat-raised-button
+                class="btn-green m-2"
+                *ngIf="element.status !== 'Active'"
+                (click)="changeUserStatus(element.status, element._id, index)"
+              >
+                {{ "general.active" | translate }}
+              </button>
+              <button
+                mat-raised-button
+                class="secondary-btn m-2"
+                *ngIf="element.status == 'Active'"
+                (click)="changeUserStatus(element.status, element._id, index)"
+              >
+                {{ "general.inactive" | translate }}
+
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr
+            mat-row
+            *matRowDef="
+              let row;
+              columns: displayedColumns
+                | paginate
+                  : {
+                      id: 'tasks',
+                      itemsPerPage: limit,
+                      currentPage: page,
+                      totalItems: totalItems
+                    }
+            "
+          ></tr>
+        </table>
+        <div
+          class="d-flex justify-content-center mt-3"
+          *ngIf="dataSource.length > 0"
+        >
+          <pagination-controls
+            class="my-pagination"
+            (pageChange)="changePage($event)"
+            id="tasks"
+            previousLabel=""
+            nextLabel=""
+          ></pagination-controls>
+        </div>
+        <div *ngIf="dataSource?.length === 0" class="no-data-message">
+          {{ "tasks.noData" | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

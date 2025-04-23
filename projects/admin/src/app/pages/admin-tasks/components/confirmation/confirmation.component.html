@@ -1,0 +1,25 @@
+<div class="dialog-wrapper px-2 py-3">
+  <header>
+    <h5 class="text-center">{{ "tasks.discard-change" | translate }}</h5>
+  </header>
+
+  <footer>
+    <div class="d-flex justify-content-center align-items-center mt-5">
+      <button
+        mat-flat-button
+        class="btn-warning py-1 px-5 mx-2"
+        (click)="confirm()"
+      >
+        {{ "general.yes" | translate }}
+      </button>
+
+      <button
+        mat-flat-button
+        class="btn-green py-1 px-5"
+        (click)="close()"
+      >
+        {{ "general.no" | translate }}
+      </button>
+    </div>
+  </footer>
+</div>

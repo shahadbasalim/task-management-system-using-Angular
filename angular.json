@@ -35,7 +35,9 @@
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/ball-fussion.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -100,7 +102,10 @@
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/ball-fussion.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+
+            ]
           }
         }
       }
@@ -137,7 +142,10 @@
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/ball-fussion.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+
+            ]
           },
           "configurations": {
             "production": {
@@ -202,7 +210,10 @@
               "node_modules/ngx-toastr/toastr.css",
               "node_modules/ngx-spinner/animations/ball-fussion.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+
+            ]
           }
         }
       }

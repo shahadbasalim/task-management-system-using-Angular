@@ -3,7 +3,9 @@
     "title": "Login",
     "email": "Email",
     "password": "Password",
-    "login": "Login"
+    "invalid-email": "Invalid Email",
+    "login": "Login",
+    "create-account": "Create Account?"
   },
 
   "register": {
@@ -11,7 +13,11 @@
     "email": "Email",
     "password": "Password",
     "confirmPassword": "Confirm Password",
-    "register": "Register"
+    "register": "Register",
+    "username": "Username",
+    "passwordNotMatch": "Password Not Match",
+    "createAccount": "Create Account",
+    "haveAccount": "Already have an account?"
   },
 
   "navbar": {
@@ -22,12 +28,14 @@
 
   "tasks": {
     "deadline": "Deadline Date",
-    "description": "Description"
+    "description": "Description",
+    "Complete": "Complete",
+    "In-Progress": "In-Progress",
+    "status": "Status"
   },
 
   "general": {
     "loading": "Loading",
-    "required": "this field is required",
     "img": "Image",
     "five-characters": "Title must be at least 5 characters",
     "select-image": "Select Image",
@@ -37,6 +45,11 @@
     "yes": "Yes",
     "no": "No",
     "details": "Details",
-    "complete": "Complete"
+    "complete": "Complete",
+    "error": "Error",
+    "page-not-found": "Page Not Found",
+    "return": "Return To Home",
+    "required": "This field is required"
+
   }
 }

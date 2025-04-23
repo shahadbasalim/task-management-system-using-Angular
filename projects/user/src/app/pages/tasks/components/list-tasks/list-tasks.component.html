@@ -1,0 +1,79 @@
+<div class="tasks">
+  <div class="form-container p-3">
+    <form>
+      <div class="col-md-3 field">
+        <div class="col-md-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>{{ selectedStatus | translate }}</mat-label>
+            <mat-select (selectionChange)="selectStatus($event)">
+              <mat-option *ngFor="let item of status" [value]="item?.name">
+                {{ item?.name | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="tasks-container d-flex">
+    <div
+      class="task-card"
+      *ngFor="
+        let item of dataSource
+          | paginate
+            : {
+                id: 'tasks',
+                itemsPerPage: itemsPerPage,
+                currentPage: page,
+                totalItems: totalItems
+              };
+        let index = index
+      "
+    >
+      <div class="card-body">
+        <div class="flex-center">
+          <img
+            [src]="'https://crud-a325.onrender.com/' + item.image"
+            alt="Task Image"
+          />
+        </div>
+
+        <h2 class="card-title">{{ item.title }}</h2>
+        <p class="card-subtitle mb-2 text-muted">
+          {{ "tasks.deadline" | translate }} : {{ item.deadline }}
+        </p>
+        <p class="card-text">{{ item.description }}</p>
+
+        <div class="d-flex justify-content-center align-items-center">
+          <button
+            mat-flat-button
+            class="secondary-btn py-1 px-5 mx-2"
+            [routerLink]="['/task-details', item._id]"
+          >
+            {{ "general.details" | translate }}
+          </button>
+          <button
+            mat-flat-button
+            class="btn-green py-1 px-5 mx-2"
+            (click)="complete(item)"
+          >
+            {{ "general.complete" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center mt-3" *ngIf="dataSource.length > 0">
+    <pagination-controls
+      class="my-pagination"
+      (pageChange)="page = $event"
+      id="tasks"
+      previousLabel=""
+      nextLabel=""
+    ></pagination-controls>
+  </div>
+  <div *ngIf="dataSource.length === 0" class="no-data-message">
+    No tasks found
+  </div>
+</div>

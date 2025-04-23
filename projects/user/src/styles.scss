@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --primary-color: #bc1059;
+  --primary-color: #b5838d;
   --white: #fff;
   --border: #ddd;
 }
@@ -37,6 +37,9 @@ a,
 button {
   cursor: pointer;
 }
+a {
+  color: #4a90e2	;
+}
 .main-btn {
   background-color: var(--primary-color);
   padding: 10px 20px;
@@ -44,26 +47,42 @@ button {
   border: none;
   color: var(--white);
 }
-.main-btn:disabled {
-  background-color: #ccc !important;
-  color: #666 !important;
-  cursor: not-allowed !important;
+.secondary-btn {
+  background-color: #d4af7f		;
+  color: var(--white);
+  padding: 10px ;
+  border-radius: 5px;
+  border: none;
+  height: 20px;
+  margin: 0 5px;
 }
-
 .btn-warning {
-  background-color: #f9c710;
+  background-color: #d66767	;
   color: var(--white);
   padding: 10px ;
   border-radius: 5px;
   border: none;
+  height: 20px;
+  margin: 0 5px;
 }
-.btn-error {
-  background-color: #e43237;
+.btn-green {
+  background-color:#6fbf73	;
   color: var(--white);
   padding: 10px ;
   border-radius: 5px;
   border: none;
+  height: 20px;
+  margin: 0 5px;
 }
 mat-error {
-  color: rgb(220 53 69)  !important;
+  color: rgb(214, 65, 65)  !important;
+}
+.toast-success {
+  background-color: #45c18a !important; // أخضر - اكتمال
+  color: #fff !important;
+}
+
+.toast-error {
+  background-color: #d66767 !important; // أحمر - اخطاء
+  color: #fff !important;
 }

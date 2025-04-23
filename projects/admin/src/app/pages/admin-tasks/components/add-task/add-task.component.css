@@ -1,0 +1,22 @@
+h1 {
+  font-weight: bold;
+}
+
+textarea {
+  min-width: 100%;
+  max-width: 100%;
+  min-height: 130px;
+  max-height: 130px;
+  resize: none;
+}
+
+::ng-deep .mat-calendar,
+mat-select,
+mat-option {
+  background-color: var(--white) !important;
+  border-radius: 6px;
+}
+
+::ng-deep .mat-calendar {
+  border: 2px solid var(--border);
+}/*# sourceMappingURL=add-task.component.css.map */
