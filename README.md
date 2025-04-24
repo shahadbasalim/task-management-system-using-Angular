@@ -2,9 +2,9 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
 # Live Demo for admin interface:
-task-management-system-using-angular-admin.vercel.app
+https://task-management-system-using-angular-admin.vercel.app/login
 # Live Demo for users interface: 
-task-management-system-using-angular-user.vercel.app
+https://task-management-system-using-angular-user.vercel.app/login
 
 ## Development server
 
