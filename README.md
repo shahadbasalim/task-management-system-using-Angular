@@ -1,10 +1,11 @@
 # Works
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
-#admin:
-https://browser-eight-chi.vercel.app/login
-#users: 
-https://task-management-system-users.vercel.app/login
+# Live Demo for admin interface:
+task-management-system-using-angular-admin.vercel.app
+# Live Demo for users interface: 
+task-management-system-using-angular-user.vercel.app
+
 ## Development server
 
 To start a local development server, run:
