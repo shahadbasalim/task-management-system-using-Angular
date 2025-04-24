@@ -11,6 +11,8 @@ nav {
     font-size: 18px;
     color: var(--white) !important;
     transition: transform 0.2s ease-in-out;
+    min-width: 80px;
+    text-align: center;
     // &:hover {
     //   transform: scale(1.1);
     // }

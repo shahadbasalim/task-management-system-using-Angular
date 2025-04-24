@@ -64,7 +64,7 @@ export class UsersComponent implements OnInit {
   getDataFromSubject() {
     this.service.userData.subscribe((res: any) => {
       this.dataSource = res.data;
-      this.totalItems = res.total;
+      this.totalItems = res.totalItems;
     });
   }
 
@@ -115,7 +115,6 @@ export class UsersComponent implements OnInit {
     clearTimeout(this.timeOutId);
     this.timeOutId = setTimeout(() => {
       this.getUsers();
-    }, 2000);
+    }, 1000);
   }
 }
-

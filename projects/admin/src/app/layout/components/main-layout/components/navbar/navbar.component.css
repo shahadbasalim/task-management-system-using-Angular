@@ -1,29 +1,22 @@
 nav {
   background-color: var(--primary-color);
-  padding: 0 20px;
+  padding: 10px 20px;
 }
-nav h1 {
+nav .navbar-brand {
   font-size: 27px;
   font-weight: bold;
   color: #fad7c4 !important;
   margin: 0;
 }
-nav #navbarSupportedContent {
-  gap: 20px;
-  justify-content: flex-end;
-}
-nav ul {
-  list-style: none;
-  gap: 20px;
-  margin: 0;
+nav .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 nav a {
   font-size: 18px;
-  color: #fff !important;
+  color: var(--white) !important;
   transition: transform 0.2s ease-in-out;
-}
-nav a:hover {
-  transform: scale(1.1);
+  min-width: 80px;
+  text-align: center;
 }
 nav a.active {
   border-bottom: 1px solid var(--white);

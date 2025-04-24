@@ -16,7 +16,7 @@
     </form>
   </div>
 
-  <div class="tasks-container d-flex">
+  <div class="tasks-container flex-center">
     <div
       class="task-card"
       *ngFor="
@@ -74,6 +74,6 @@
     ></pagination-controls>
   </div>
   <div *ngIf="dataSource.length === 0" class="no-data-message">
-    No tasks found
+    {{ "tasks.noData" | translate }}
   </div>
 </div>

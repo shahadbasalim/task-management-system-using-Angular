@@ -39,7 +39,6 @@
     "tasksAssigned"	: "المهام المسندة"
   },
 
-  "users": {},
 
   "general": {
     "loading": "جاري التحميل",
@@ -61,7 +60,6 @@
     "inactive": "تعطيل"
   },
 
-  "toaster": {},
+  "toaster": {}
 
-  "buttons": {}
 }

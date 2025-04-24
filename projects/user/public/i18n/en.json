@@ -31,7 +31,8 @@
     "description": "Description",
     "Complete": "Complete",
     "In-Progress": "In-Progress",
-    "status": "Status"
+    "status": "Status",
+    "noData": "No Tasks Found"
   },
 
   "general": {

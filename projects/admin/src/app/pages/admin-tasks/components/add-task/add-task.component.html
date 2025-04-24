@@ -1,6 +1,5 @@
 <div class="p-4 dialog">
   <header class="d-flex justify-content-between align-items-center">
-    <!-- <h1 class="m-0">{{ data ? "Update Task" : "Add New Task" }}</h1> -->
     <h1 class="m-0">
       <h1 class="m-0">
         {{
@@ -16,13 +15,13 @@
   </header>
   <form [formGroup]="newTaskForm">
     <div class="row mt-3">
-      <div class="col-md-12 ">
-        <mat-form-field appearance="outline" class="w-100 ">
+      <div class="col-md-12">
+        <mat-form-field appearance="outline" class="w-100">
           <mat-label>{{ "tasks.title" | translate }}</mat-label>
           <input matInput placeholder="title" formControlName="title" />
         </mat-form-field>
         <div
-          class="text-danger small "
+          class="text-danger small"
           *ngIf="
             newTaskForm.get('title')?.touched &&
             newTaskForm.get('title')?.invalid
@@ -58,7 +57,9 @@
         </div>
       </div>
       <div class="col-md-12 my-3">
-        <label class=" main-btn" for="selectFile"> {{ "general.select-image" | translate }}</label>
+        <label class="main-btn" for="selectFile">
+          {{ "general.select-image" | translate }}</label
+        >
         <input
           type="file"
           class="main-btn"
@@ -140,7 +141,7 @@
         [disabled]="newTaskForm.invalid"
         *ngIf="!data"
       >
-      {{ "general.create" | translate }}
+        {{ "general.create" | translate }}
       </button>
       <button
         mat-flat-button
@@ -152,11 +153,7 @@
         {{ "general.update" | translate }}
       </button>
 
-      <button
-        mat-flat-button
-        class="btn-warning py-1 px-5"
-        (click)="close()"
-      >
+      <button mat-flat-button class="btn-warning py-1 px-5" (click)="close()">
         {{ "general.close" | translate }}
       </button>
     </div>

@@ -30,20 +30,21 @@
     "description": "الوصف",
     "Complete": "مكتملة",
     "In-Progress": "قيد التنفيذ",
-    "status": "الحالة"
+    "status": "الحالة",
+    "noData": "لا توجد مهام"
   },
 
 
   "general": {
-    "loading": "Loading",
+    "loading": "جاري التحميل",
     "img": "Image",
-    "five-characters": "Title must be at least 5 characters",
-    "select-image": "Select Image",
-    "create": "Create",
-    "update": "Update",
-    "close": "Close",
-    "yes": "Yes",
-    "no": "No",
+    "five-characters": "  يجب أن يكون العنوان 5 أحرف على الأقل",
+    "select-image": "اختر صورة",
+    "create": "إنشاء",
+    "update": "تحديث",
+    "close": "إغلاق",
+    "yes": "نعم",
+    "no": "لا",
     "details": "تفاصيل",
     "complete": "مكتمل",
     "error": "خطأ",

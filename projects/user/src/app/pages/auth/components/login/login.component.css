@@ -5,8 +5,8 @@
   height: 100%;
 }
 .login .login-container .box {
-  width: 30%;
-  padding: 20px;
+  width: 70%;
+  padding: 20px 0;
   border: 1px solid #ddd;
   border-radius: 15px;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
@@ -16,8 +16,15 @@
   margin-bottom: 30px;
 }
 .login .login-container .box mat-form-field {
-  width: 100%;
+  width: 100% !important;
 }
 .login .login-container .box mat-form-field input {
   padding: 0 10px;
+}
+
+@media (max-width: 768px) {
+  .login .login-container .box {
+    width: 90%;
+    padding: 10px;
+  }
 }/*# sourceMappingURL=login.component.css.map */

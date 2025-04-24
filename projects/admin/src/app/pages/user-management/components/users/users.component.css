@@ -15,26 +15,6 @@
   margin: 0 10px;
   width: 90%;
 }
-.list-users .no-data-message {
-  text-align: center;
-  margin-top: 50px;
-}
 .list-users .listBox {
   overflow-x: auto;
-}
-
-:host ::ng-deep table {
-  border: 1px solid rgba(0, 0, 0, 0.5);
-}
-:host ::ng-deep table th {
-  background-color: var(--primary-color) !important;
-  color: var(--white) !important;
-  text-align: center !important;
-}
-:host ::ng-deep table td {
-  text-align: center !important;
-}
-
-.my-pagination ::ng-deep .ngx-pagination .current {
-  background: var(--primary-color);
 }/*# sourceMappingURL=users.component.css.map */
