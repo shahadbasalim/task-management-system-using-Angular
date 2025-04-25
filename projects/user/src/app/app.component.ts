@@ -7,7 +7,6 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
   selector: 'app-root',
   imports: [RouterOutlet, TranslateModule, NgxSpinnerModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'user';

@@ -64,113 +64,19 @@
       </form>
     </div>
     <div class="listBox">
-      <table
-        mat-table
+      <app-table
+        [columns]="tableColumns"
         [dataSource]="dataSource"
-        class="mat-elevation-z8 w-100 mt-2"
+        [totalItems]="totalItems"
+        [page]="page"
+        [limit]="limit"
+        paginationId="tasks"
+        (pageChange)="changePage($event)"
+        (action)="onTableAction($event)"
       >
-        <!-- img Column -->
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "general.img" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element; let index = index">
-            <img
-              [src]="'https://crud-a325.onrender.com/' + element.image"
-              alt="photo"
-            />
-          </td>
-        </ng-container>
-
-        <!-- title Column -->
-        <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "tasks.title" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
-        </ng-container>
-
-        <!-- users Column -->
-        <ng-container matColumnDef="user">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "tasks.user" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">
-            {{ element.userId.username }}
-          </td>
-        </ng-container>
-
-        <!-- deadline Column -->
-        <ng-container matColumnDef="deadline">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "tasks.deadline" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">{{ element.deadline }}</td>
-        </ng-container>
-
-        <!-- status Column -->
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef>
-            {{ "tasks.status" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">{{ element.status }}</td>
-        </ng-container>
-
-        <!-- actions Column -->
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef class="w-20">
-            {{ "tasks.actions" | translate }}
-          </th>
-          <td mat-cell *matCellDef="let element">
-            <button
-              class="secondary-btn my-2"
-              mat-raised-button
-              (click)="updateTask(element)"
-            >
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button
-              mat-raised-button
-              class="btn-warning my-2"
-              (click)="deleteTask(element._id)"
-            >
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr
-          mat-row
-          *matRowDef="
-            let row;
-            columns: displayedColumns
-              | paginate
-                : {
-                    id: 'tasks',
-                    itemsPerPage: 7,
-                    currentPage: page,
-                    totalItems: totalItems
-                  }
-          "
-        ></tr>
-      </table>
-      <div
-        class="d-flex justify-content-center mt-3"
-        *ngIf="dataSource.length > 0"
-      >
-        <pagination-controls
-          class="my-pagination"
-          (pageChange)="changePage($event)"
-          id="tasks"
-          previousLabel=""
-          nextLabel=""
-        ></pagination-controls>
-      </div>
-      <div *ngIf="dataSource.length === 0" class="no-data-message">
-        {{ "tasks.noData" | translate }}
-      </div>
+      </app-table>
     </div>
   </div>
 </div>
+
 

@@ -59,7 +59,7 @@
     "number": "Number",
     "email": "Email",
     "active": "Active",
-    "inactive": "Inactive"
+    "in-active": "In-Active"
   },
 
   "toaster": {},

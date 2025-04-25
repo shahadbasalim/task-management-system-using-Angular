@@ -57,7 +57,7 @@
     "number": "الرقم",
     "email": "البريد الإلكتروني",
      "active": "تفعيل",
-    "inactive": "تعطيل"
+    "in-active": "تعطيل"
   },
 
   "toaster": {}

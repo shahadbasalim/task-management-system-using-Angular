@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { MatInputModule } from '@angular/material/input';
@@ -16,6 +16,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { UsersService } from '../../../user-management/services/users.service';
+import { TableComponent } from '../../../../shared/components/table/table.component';
 
 @Component({
   selector: 'app-list-tasks',
@@ -31,21 +32,36 @@ import { UsersService } from '../../../user-management/services/users.service';
     NgxPaginationModule,
     TranslateModule,
     MatIconModule,
+    TableComponent,
   ],
   templateUrl: './list-tasks.component.html',
   styleUrl: './list-tasks.component.scss',
 })
 export class ListTasksComponent implements OnInit {
-  displayedColumns: string[] = [
-    'position',
-    'title',
-    'user',
-    'deadline',
-    'status',
-    'actions',
+  tableColumns = [
+    { def: 'position', header: 'general.img', type: 'image', field: 'image' },
+    { def: 'title', header: 'tasks.title', type: 'text', field: 'title' },
+    { def: 'user', header: 'tasks.user', type: 'text', field: 'username' },
+    {
+      def: 'deadline',
+      header: 'tasks.deadline',
+      type: 'text',
+      field: 'deadline',
+    },
+    { def: 'status', header: 'tasks.status', type: 'text', field: 'status' },
+    {
+      def: 'actions',
+      header: 'tasks.actions',
+      isAction: true,
+      actions: [
+        { type: 'edit', icon: 'edit', class: 'secondary-btn' },
+        { type: 'delete', icon: 'delete', class: 'btn-warning' },
+      ],
+    },
   ];
 
   dataSource: any = [];
+
   tasksFilter!: FormGroup;
 
   users: any = [];
@@ -53,11 +69,12 @@ export class ListTasksComponent implements OnInit {
   status: any = [{ name: 'Complete' }, { name: 'In-Progress' }];
 
   page: number = 1;
+  limit: number = 7;
+  totalItems!: number;
   filteration: any = {
     page: this.page,
-    limit: 7,
+    limit: this.limit,
   };
-  totalItems!: number;
 
   timeOutId: any;
 
@@ -131,22 +148,21 @@ export class ListTasksComponent implements OnInit {
   getAllTasks() {
     this.service.getAllTasks(this.filteration).subscribe((res: any) => {
       console.log('get all tasks', res);
-      // this.dataSource = this.mappingTasks(res.tasks);
-      this.dataSource = res.tasks;
+      this.dataSource = this.mappingTasks(res.tasks);
+      // this.dataSource = res.tasks;
       this.totalItems = res.totalItems;
     });
   }
 
-  // mappingTasks(data: any[]) {
-  //   let newTasks = data.map((item) => {
-  //     return {
-  //       ...item,
-  //       user: item.userId?.username,
-  //     };
-
-  //   });
-  //   return newTasks;
-  // }
+  mappingTasks(data: any[]) {
+    let newTasks = data.map((item) => {
+      return {
+        ...item,
+        username: item.userId?.username,
+      };
+    });
+    return newTasks;
+  }
 
   addTask() {
     const dialogRef = this.dialog.open(AddTaskComponent, {
@@ -161,8 +177,15 @@ export class ListTasksComponent implements OnInit {
     });
   }
 
+  onTableAction(event: any) {
+    if (event.type === 'edit') {
+      this.updateTask(event.data);
+    } else if (event.type === 'delete') {
+      this.deleteTask(event.data._id);
+    }
+  }
+
   deleteTask(id: any) {
-    console.log('delete id' , id);
     this.service.deleteTask(id).subscribe((res) => {
       this.toast.show('task deleted successfully', 'success');
       this.getAllTasks();
@@ -190,5 +213,3 @@ export class ListTasksComponent implements OnInit {
     this.getAllTasks();
   }
 }
-
-

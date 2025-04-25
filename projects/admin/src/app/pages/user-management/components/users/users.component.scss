@@ -18,34 +18,9 @@
       }
     }
   }
-  .no-data-message {
-    text-align: center;
-    margin-top: 50px;
-  }
+
   .listBox {
     overflow-x: auto;
   }
 }
 
-:host ::ng-deep {
-  table {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-
-    th {
-      background-color: var(--primary-color) !important;
-      color: var(--white) !important;
-      text-align: center !important;
-    }
-    td {
-      text-align: center !important;
-    }
-  }
-}
-
-// .w-20 {
-//   width: 20% !important;
-// }
-
-.my-pagination ::ng-deep .ngx-pagination .current {
-  background: var(--primary-color);
-}

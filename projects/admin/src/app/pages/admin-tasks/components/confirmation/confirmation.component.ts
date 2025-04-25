@@ -5,7 +5,6 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-confirmation',
   imports: [MatDialogModule, TranslateModule],
   templateUrl: './confirmation.component.html',
-  styleUrl: './confirmation.component.scss',
 })
 export class ConfirmationComponent {
   constructor(
