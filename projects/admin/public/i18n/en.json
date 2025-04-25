@@ -59,7 +59,10 @@
     "number": "Number",
     "email": "Email",
     "active": "Active",
-    "in-active": "In-Active"
+    "in-active": "In-Active",
+    "discard-change" : "Are You Sure That You Want To Discard Your Changes ?",
+   " confirm-delete-message" : "Are You Sure That You Want To Delete ?"
+
   },
 
   "toaster": {},

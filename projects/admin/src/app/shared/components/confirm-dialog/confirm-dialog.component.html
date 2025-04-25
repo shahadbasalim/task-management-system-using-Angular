@@ -1,1 +1,23 @@
-<p>confirm-dialog works!</p>
+<div class="confirm-dialog">
+  <header>
+    <h5>{{ data.message | translate }}</h5>
+  </header>
+
+  <footer>
+    <div class="flex-center mt-3">
+      <button
+        mat-flat-button
+        class="btn-warning mx-2"
+        [mat-dialog-close]="true"
+      >
+
+        {{ "general.yes" | translate }}
+      </button>
+
+      <button mat-flat-button class="btn-green" mat-dialog-close>
+
+        {{ "general.no" | translate }}
+      </button>
+    </div>
+  </footer>
+</div>

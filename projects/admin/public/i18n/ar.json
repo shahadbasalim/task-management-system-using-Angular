@@ -36,9 +36,8 @@
     "description": " الوصف",
     "discard-change": "هل أنت متأكد من أنك تريد تجاهل تغييراتك؟",
     "name": "الاسم",
-    "tasksAssigned"	: "المهام المسندة"
+    "tasksAssigned": "المهام المسندة"
   },
-
 
   "general": {
     "loading": "جاري التحميل",
@@ -56,10 +55,11 @@
     "return": "رجوع",
     "number": "الرقم",
     "email": "البريد الإلكتروني",
-     "active": "تفعيل",
-    "in-active": "تعطيل"
+    "active": "تفعيل",
+    "in-active": "تعطيل",
+    "discard-change": "هل انت متاكد من انك تريد تجاهل التغييرات ؟",
+    "confirm-delete-message": "هل انت متاكد من انك تريد الحذف ؟"
   },
 
   "toaster": {}
-
 }

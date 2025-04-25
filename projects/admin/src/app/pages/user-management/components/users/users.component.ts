@@ -7,6 +7,8 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
+import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-users',
@@ -17,6 +19,8 @@ import { TranslateModule } from '@ngx-translate/core';
     MatInputModule,
     TranslateModule,
     TableComponent,
+    MatDialogModule,
+    ConfirmDialogComponent,
   ],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
@@ -71,7 +75,11 @@ export class UsersComponent implements OnInit {
 
   timeOutId: any;
 
-  constructor(private service: UsersService, private toast: ToastService) {
+  constructor(
+    private service: UsersService,
+    private toast: ToastService,
+    private dialog: MatDialog
+  ) {
     this.getDataFromSubject();
   }
 
@@ -107,18 +115,28 @@ export class UsersComponent implements OnInit {
         'User Cannot be Deleted as he has assigned tasks',
         'error'
       );
-    } else {
-      this.service.deleteUser(id).subscribe((res: any) => {
-        this.getUsers();
-        this.toast.show('User Deleted Successfully', 'success');
-      });
+      return;
     }
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        message: 'general.confirm-delete-message'
+      },
+    });
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.service.deleteUser(id).subscribe((res: any) => {
+          this.getUsers();
+          this.toast.show('User Deleted Successfully', 'success');
+        });
+      }
+    });
   }
 
   changeUserStatus(status: string, id: string, index: number) {
     const model: ChangeStatus = {
       id,
-      status
+      status,
     };
 
     if (this.dataSource[index].assignedTasks > 0) {

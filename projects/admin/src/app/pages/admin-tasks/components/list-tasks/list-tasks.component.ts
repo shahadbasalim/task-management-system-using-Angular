@@ -17,6 +17,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { UsersService } from '../../../user-management/services/users.service';
 import { TableComponent } from '../../../../shared/components/table/table.component';
+import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-list-tasks',
@@ -33,6 +34,7 @@ import { TableComponent } from '../../../../shared/components/table/table.compon
     TranslateModule,
     MatIconModule,
     TableComponent,
+    ConfirmDialogComponent,
   ],
   templateUrl: './list-tasks.component.html',
   styleUrl: './list-tasks.component.scss',
@@ -186,9 +188,17 @@ export class ListTasksComponent implements OnInit {
   }
 
   deleteTask(id: any) {
-    this.service.deleteTask(id).subscribe((res) => {
-      this.toast.show('task deleted successfully', 'success');
-      this.getAllTasks();
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { message: 'general.confirm-delete-message' },
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (confirmed) {
+        this.service.deleteTask(id).subscribe(() => {
+          this.toast.show('task deleted successfully', 'success');
+          this.getAllTasks();
+        });
+      }
     });
   }
 

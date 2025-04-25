@@ -20,9 +20,9 @@ import { CommonModule } from '@angular/common';
 import { TasksService } from '../../services/tasks.service';
 import moment from 'moment';
 import { ToastService } from '../../../../shared/services/toast.service';
-import { ConfirmationComponent } from '../confirmation/confirmation.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { UsersService } from '../../../user-management/services/users.service';
+import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-add-task',
@@ -143,8 +143,16 @@ export class AddTaskComponent implements OnInit {
       }
     });
     if (hasChanges) {
-      const dialogRef = this.matDialog.open(ConfirmationComponent, {
-        width: '400px',
+      const dialogRef = this.matDialog.open(ConfirmDialogComponent, {
+        data: {
+          message: 'general.discard-change',
+        },
+      });
+
+      dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+        if (confirmed) {
+          this.dialog.close();
+        }
       });
     } else {
       this.dialog.close();
