@@ -10,6 +10,12 @@ export class ToastService {
     type: 'success' | 'error' | 'info' | 'warning' = 'info',
     title: string = '',
   ) {
-    this.toastr[type](message, title );
+    this.toastr[type](message, title , {
+      closeButton: true,
+      progressBar: true,
+      easing: 'ease-down',
+      timeOut: 4000,
+       toastClass: 'ngx-toastr'
+    });
   }
 }

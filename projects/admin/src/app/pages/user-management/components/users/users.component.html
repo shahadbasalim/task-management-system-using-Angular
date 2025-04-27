@@ -4,9 +4,16 @@
       <form>
         <div class="row mt-3 fields-container">
           <div class="col-md-3 filed">
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>{{ "tasks.byName" | translate }}</mat-label>
-              <input matInput placeholder="title search" (keyup)="search($event.target)" />
+            <mat-form-field  class="w-100">
+              <mat-label class="flex"
+                ><mat-icon class="search-icon">search</mat-icon
+                >{{ "tasks.byName" | translate }}</mat-label
+              >
+              <input
+                matInput
+                placeholder="title search"
+                (keyup)="search($event.target)"
+              />
             </mat-form-field>
           </div>
         </div>
@@ -20,7 +27,8 @@
           [limit]="limit"
           paginationId="users"
           (pageChange)="changePage($event)"
-          (action)="onTableAction($event)">
+          (action)="onTableAction($event)"
+        >
         </app-table>
       </div>
     </div>

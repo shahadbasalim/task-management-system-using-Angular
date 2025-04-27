@@ -1,0 +1,95 @@
+.dashboard {
+  .hero {
+    justify-content: space-around;
+    img {
+      width: 300px;
+    }
+    .typewriter {
+      color: var(--secondary-color);
+      font-weight: bold;
+      border-right: 2px solid var(--primary-color); /* لمحاكاة المؤشر */
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      animation: typing 3s steps(30, end) 1s forwards,
+        blink-caret 0.75s step-end infinite;
+    }
+  }
+  .stats {
+    justify-content: space-around;
+    .stats-container {
+      .cards {
+        gap: 20px;
+        .card {
+          width: 160px;
+          height: 100px;
+          h3 {
+            color: var(--primary-color);
+          }
+        }
+      }
+      .card.time-card {
+        .time {
+          color: var(--primary-color);
+          font-size: 30px;
+        }
+      }
+    }
+    .date {
+      .demo-inline-calendar-card {
+        width: 300px;
+        background-color: var(--white);
+        border-top: 5px solid var(--secondary-color);
+        box-shadow: var(--shadow);
+        border-radius: var(--border-radius);
+      }
+    }
+  }
+  .employees {
+    justify-content: space-around;
+    gap: 20px;
+    .employee-of-the-month {
+      width: 30%;
+      .card {
+        background-color: var(--white);
+        border-top: 5px solid var(--secondary-color);
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 6px;
+        img {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          border: 3px solid var(--secondary-color);
+        }
+        .stars {
+          color: #ebb22c !important;
+        }
+      }
+    }
+    .chart {
+      width: 60%;
+    }
+  }
+}
+
+// Typing animation
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+/* حركة المؤشر */
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #00318b;
+  }
+}
+
+

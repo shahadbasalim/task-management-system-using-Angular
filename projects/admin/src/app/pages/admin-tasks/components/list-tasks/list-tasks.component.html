@@ -6,11 +6,14 @@
           {{ "tasks.addTask" | translate }}
         </button>
       </div>
-      <form>
+      <form class="mt-5 mb-3">
         <div class="fields-container flex-center">
           <div class="col-md-3 field">
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>{{ "tasks.byTitle" | translate }}</mat-label>
+            <mat-form-field class="w-100">
+              <mat-label class="flex"
+                ><mat-icon class="search-icon">search</mat-icon
+                >{{ "tasks.byTitle" | translate }}</mat-label
+              >
               <input
                 matInput
                 placeholder="title search"
@@ -19,8 +22,11 @@
             </mat-form-field>
           </div>
           <div class="col-md-3">
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>{{ "tasks.byUser" | translate }}</mat-label>
+            <mat-form-field class="w-100">
+              <mat-label class="flex"
+                ><mat-icon class="search-icon">search</mat-icon
+                >{{ "tasks.byUser" | translate }}</mat-label
+              >
               <mat-select (selectionChange)="selectUser($event)">
                 <mat-option *ngFor="let user of users" [value]="user?.id">
                   {{ user?.name }}
@@ -29,8 +35,11 @@
             </mat-form-field>
           </div>
           <div class="col-md-3">
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>{{ "tasks.status" | translate }}</mat-label>
+            <mat-form-field class="w-100">
+              <mat-label class="flex"
+                ><mat-icon class="search-icon">search</mat-icon
+                >{{ "tasks.byStatus" | translate }}</mat-label
+              >
               <mat-select (selectionChange)="selectStatus($event)">
                 <mat-option *ngFor="let item of status" [value]="item?.name">
                   {{ "tasks." + item?.name | translate }}
@@ -39,8 +48,11 @@
             </mat-form-field>
           </div>
           <div class="col-md-3">
-            <mat-form-field appearance="outline" class="w-100">
-              <mat-label>{{ "tasks.dateRange" | translate }}</mat-label>
+            <mat-form-field class="w-100">
+              <mat-label class="flex"
+                ><mat-icon class="search-icon">search</mat-icon
+                >{{ "tasks.byDateRange" | translate }}</mat-label
+              >
               <mat-date-range-input [rangePicker]="picker">
                 <input
                   matStartDate
@@ -78,5 +90,3 @@
     </div>
   </div>
 </div>
-
-

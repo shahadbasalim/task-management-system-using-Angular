@@ -1,5 +1,9 @@
 <!-- shared/components/table/table.component.html -->
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 w-100">
+<table
+  mat-table
+  [dataSource]="dataSource"
+  class="mat-elevation-z8 w-100 table table-hover table-striped"
+>
   <!-- Dynamic columns -->
   <ng-container *ngFor="let column of columns" [matColumnDef]="column.def">
     <th mat-header-cell *matHeaderCellDef>
@@ -17,7 +21,7 @@
         <ng-container *ngIf="column.type === 'image'">
           <img
             [src]="'https://crud-a325.onrender.com/' + element[column.field]"
-            alt="photo"
+            alt="task image"
           />
         </ng-container>
       </ng-container>
@@ -59,9 +63,9 @@
 </table>
 
 <!-- Pagination -->
-<div class="d-flex justify-content-center mt-3" *ngIf="dataSource.length > 0">
+<div class="my-5 pagintaion-container" *ngIf="dataSource.length > 0">
   <pagination-controls
-    class="my-pagination"
+    class="my-pagination flex-center"
     (pageChange)="onPageChange($event)"
     [id]="paginationId"
     previousLabel=""

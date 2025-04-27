@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { TranslateModule } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-users',
@@ -21,13 +22,14 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
     TableComponent,
     MatDialogModule,
     ConfirmDialogComponent,
+    MatIconModule,
   ],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
   tableColumns = [
-    { def: 'position', header: 'general.number', type: 'index' },
+    { def: 'position', header: '#', type: 'index' },
     { def: 'name', header: 'tasks.name', type: 'text', field: 'username' },
     { def: 'email', header: 'general.email', type: 'text', field: 'email' },
     {
@@ -44,19 +46,19 @@ export class UsersComponent implements OnInit {
         {
           type: 'delete',
           icon: 'delete',
-          class: 'btn-warning',
+          class: 'delete-icon',
           showIf: () => true,
         },
         {
           type: 'changeStatus',
           label: 'general.active',
-          class: 'btn-green',
+          class: 'icon-green',
           showIf: (element: any) => element.status !== 'Active',
         },
         {
           type: 'changeStatus',
           label: 'general.in-active',
-          class: 'secondary-btn',
+          class: 'gray-btn',
           showIf: (element: any) => element.status === 'Active',
         },
       ],
@@ -79,12 +81,11 @@ export class UsersComponent implements OnInit {
     private service: UsersService,
     private toast: ToastService,
     private dialog: MatDialog
-  ) {
-    this.getDataFromSubject();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getUsers();
+    this.getDataFromSubject();
   }
 
   getUsers() {
@@ -120,7 +121,7 @@ export class UsersComponent implements OnInit {
 
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
-        message: 'general.confirm-delete-message'
+        message: 'general.confirm-delete-message',
       },
     });
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {

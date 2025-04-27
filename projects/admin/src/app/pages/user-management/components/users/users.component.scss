@@ -8,11 +8,16 @@
       margin-top: 20px;
       div {
         width: 220px;
+
         mat-form-field {
           width: 100%;
+          .search-icon {
+            font-size: 25px;
+          }
           input {
             margin: 0 10px;
             width: 90%;
+
           }
         }
       }

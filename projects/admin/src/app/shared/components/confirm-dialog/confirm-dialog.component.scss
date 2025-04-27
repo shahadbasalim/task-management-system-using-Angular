@@ -1,4 +1,6 @@
 .confirm-dialog {
-  padding: 20px 10px;
-  text-align: center;
+  padding: 20px;
+  .close-icon {
+    text-align: right;
+  }
 }

@@ -11,7 +11,10 @@
     "title": "Tasks Manager",
     "all-tasks": "All Tasks",
     "users": "Users",
-    "logout": "Logout"
+    "logout": "Logout",
+    "welcome": "Welcome",
+    "dashboard": "Dashboard"
+
   },
 
   "tasks": {
@@ -23,7 +26,7 @@
     "byStatus": "Search By Status",
     "byName": "Search By Name",
 
-    "dateRange": "Enter Date Range",
+    "byDateRange": "Search By Date Range",
     "title": "Title",
     "user": "User",
     "deadline": "Deadline Date",
@@ -61,7 +64,7 @@
     "active": "Active",
     "in-active": "In-Active",
     "discard-change" : "Are You Sure That You Want To Discard Your Changes ?",
-   " confirm-delete-message" : "Are You Sure That You Want To Delete ?"
+   "confirm-delete-message" : "Are You Sure That You Want To Delete ?"
 
   },
 

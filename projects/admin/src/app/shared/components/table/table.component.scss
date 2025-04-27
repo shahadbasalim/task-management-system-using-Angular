@@ -1,16 +1,16 @@
-
-
 :host ::ng-deep {
   table {
-    border: 1px solid rgba(0, 0, 0, 0.5);
-
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     th {
-      background-color: var(--primary-color) !important;
+      background-color:var(--secondary-color) !important;
       color: var(--white) !important;
       text-align: center !important;
     }
     td {
       text-align: center !important;
+      img {
+        width: 50px;
+      }
     }
   }
   .no-data-message {
@@ -18,7 +18,14 @@
     margin-top: 50px;
   }
 }
+// pagination
+.pagintaion-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .my-pagination ::ng-deep .ngx-pagination .current {
   background: var(--primary-color);
 }
+

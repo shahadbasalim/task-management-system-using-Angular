@@ -1,49 +1,41 @@
-<nav class="navbar navbar-expand-lg">
-  <div class="container-fluid">
-    <div class="d-flex justify-content-between w-100">
-      <a class="navbar-brand">{{ "navbar.title" | translate }}</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-    <div
-      class="collapse navbar-collapse w-100 "
-      id="navbarSupportedContent"
-    >
-      <ul class="navbar-nav mb-2 mb-lg-0 w-100 flex justify-content-end">
-        <li class="nav-item">
-          <a
-            class="nav-link active"
-            aria-current="page"
-            routerLink="/list-tasks"
-            routerLinkActive="active"
-            >{{ "navbar.all-tasks" | translate }}</a
-          >
+<div class="layout">
+  <!-- Top Navbar -->
+  <nav class="top-navbar flex justify-content-between px-4">
+    <div class="site-title mx-5">{{ "navbar.title" | translate }}</div>
+    <div class="welcome-message">{{ "navbar.welcome" | translate }}</div>
+  </nav>
+
+  <!-- Sidebar  -->
+  <div class="d-flex sidebar mx-3">
+    <div class="sidebar-container" [class.expanded]="isExpanded">
+      <ul class="nav-links">
+        <!-- زر تصغير/تكبير القائمة -->
+        <li (click)="toggleSidebar()">
+          <mat-icon>menu_open</mat-icon>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/users" routerLinkActive="active">{{
-            "navbar.users" | translate
-          }}</a>
+
+        <!-- الروابط -->
+        <li
+          *ngFor="let link of navLinks"
+          routerLink="{{ link.route }}"
+          routerLinkActive="active"
+        >
+          <mat-icon>{{ link.icon }}</mat-icon>
+          <span *ngIf="isExpanded">{{ link.label | translate }}</span>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login" (click)="logout()">{{
-            "navbar.logout" | translate
-          }}</a>
+
+        <!-- تغيير اللغة -->
+        <li (click)="changeLanguage()">
+          <mat-icon>language</mat-icon>
+          <span *ngIf="isExpanded">{{ lang == "en" ? "العربية" : "EN" }}</span>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" (click)="changeLanguage()">{{
-            lang == "en" ? "عربي" : "EN"
-          }}</a>
+
+        <!-- تسجيل الخروج -->
+        <li (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span *ngIf="isExpanded">{{ "navbar.logout" | translate }}</span>
         </li>
       </ul>
     </div>
   </div>
-</nav>
+</div>

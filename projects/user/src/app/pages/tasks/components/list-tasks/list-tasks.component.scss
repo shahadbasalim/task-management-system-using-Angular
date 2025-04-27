@@ -15,13 +15,12 @@
 .tasks-container {
   align-items: stretch;
   flex-wrap: wrap;
-  padding: 20px 10px;
   gap: 20px;
   .task-card {
     border-radius: 6px;
     border: 1px solid rgba(0, 0, 0, 0.3);
     padding: 10px;
-    width: 370px;
+    width: 350px;
     img {
       width: 200px;
       height: 200px;

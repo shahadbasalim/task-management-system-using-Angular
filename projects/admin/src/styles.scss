@@ -1,10 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --primary-color: #b5838d;
+  --primary-color: #00318b;
+  --secondary-color: rgb(0, 49, 139, 0.5);
   --white: #fff;
   --border: #ddd;
+  --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  --border-radius: 6px;
 }
-
 body {
   font-family: "IBM Plex Sans Arabic", sans-serif !important;
   margin: 0;
@@ -30,6 +32,7 @@ td {
   align-items: center;
   justify-content: center;
 }
+
 a,
 button {
   all: unset;
@@ -39,44 +42,15 @@ a,
 button {
   cursor: pointer;
 }
-.main-btn {
-  background-color: var(--primary-color);
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  color: var(--white);
+ul {
+  list-style: none;
 }
-.secondary-btn {
-  background-color: #9ca3af;
-  color: var(--white);
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  height: 20px;
-  margin: 0 5px;
-}
-.btn-warning {
-  background-color: #d66767;
-  color: var(--white);
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  height: 20px;
-  margin: 0 5px;
-}
-.btn-green {
-  background-color: #6fbf73;
-  color: var(--white);
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  height: 20px;
-  margin: 0 5px;
-}
+
 mat-error {
   color: rgb(214, 65, 65) !important;
 }
 
+// toast styles
 .toast-success {
   background-color: #45c18a !important; // أخضر - اكتمال
   color: #fff !important;
@@ -85,4 +59,159 @@ mat-error {
 .toast-error {
   background-color: #d66767 !important; // أحمر - اخطاء
   color: #fff !important;
+}
+
+.ngx-toastr {
+  animation: slideDown 0.5s ease forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// system buttons
+.main-btn,
+.btn-green,
+.btn-red {
+  padding: 12px 24px;
+  border-radius: 25px; /* حواف مستديرة بشكل أكبر */
+  border: 2px solid var(--white); /* إضافة حدود */
+  color: var(--white);
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+
+  /* تأثير الانتقال عند المرور */
+  &:hover {
+    background-color: var(
+      --white
+    ); /* تغيير اللون الخلفي إلى الأبيض عند المرور */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* إضافة ظل عصري */
+  }
+
+  /* تأثير الانحناء عند الضغط */
+  &:active {
+    color: var(--white);
+    transform: translateY(5px); /* انزلاق الزر لأسفل عند الضغط */
+    box-shadow: none; /* إزالة الظل عند الضغط */
+  }
+  /* إضافة تأثير متموج عند المرور بالماوس */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(0);
+    transition: transform 0.3s ease-out;
+  }
+
+  &:hover::before {
+    transform: scale(1); /* تأثير تموج عند مرور الماوس */
+  }
+}
+
+.main-btn {
+  background-color: var(--primary-color);
+  &:hover {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+
+  &:active {
+    background-color: var(--primary-color);
+  }
+}
+.btn-green {
+  background-color: #6fbf73;
+  &:hover {
+    color: #6fbf73;
+    border-color: #6fbf73;
+  }
+
+  &:active {
+    background-color: #6fbf73;
+  }
+}
+
+.btn-red {
+  background-color: #d66767;
+  &:hover {
+    color: #d66767;
+    border-color: #d66767;
+  }
+
+  &:active {
+    background-color: #d66767;
+  }
+}
+
+// table + card buttons
+.gray-btn,
+.delete-icon,
+.icon-green {
+  color: var(--white);
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  height: 20px;
+  margin: 0 5px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  &:active {
+    transform: translateY(2px);
+  }
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.gray-btn {
+  background-color: #9ca3af;
+  &:hover {
+    background-color: #6b7280;
+  }
+}
+
+.delete-icon {
+  background-color: #d66767;
+  &:hover {
+    background-color: #cb3333;
+  }
+}
+.icon-green {
+  background-color: #6fbf73;
+  &:hover {
+    background-color: #18bb20;
+  }
+}
+
+// card
+.card {
+  border-top: 5px solid var(--secondary-color) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+// calendar
+.mat-calendar-body-today:not(.mat-calendar-body-selected):not(
+    .mat-calendar-body-comparison-identical
+  ) {
+  background-color: var(--primary-color) !important;
+  color: var(--white) !important;
 }

@@ -1,0 +1,64 @@
+<div class="dashboard flex-center">
+  <div class="container my-4">
+    <section class="hero flex">
+      <div class="content">
+        <h5>أهلاً بك في</h5>
+        <h1 class="typewriter my-4">نظام إدارة المهام</h1>
+        <h5>
+          هنا يمكنك متابعة أداء الموظفين، وتعيين المهام بكل سهولة واحترافية!
+        </h5>
+        <button class="main-btn mt-3" [routerLink]="['/list-tasks']">
+          انشاء مهمة جديدة
+        </button>
+      </div>
+      <img src="/images/list-tasks.gif" alt="list of tasks" class="mt-5" />
+    </section>
+    <hr />
+    <section class="stats flex my-5">
+      <div class="stats-container">
+        <div class="cards flex">
+          <div *ngFor="let card of cardsData" class="card flex-center ">
+            <mat-icon>{{ card.icon }}</mat-icon>
+            <h3 class="m-0">{{ card.value }}</h3>
+            <p class="m-0">{{ card.label }}</p>
+          </div>
+        </div>
+        <div class="card time-card flex mt-5 py-2">
+          <p>الساعة الان</p>
+          <div class="time">{{ currentTime }}</div>
+        </div>
+      </div>
+
+      <div class="date">
+        <mat-card class="demo-inline-calendar-card">
+          <mat-calendar></mat-calendar>
+        </mat-card>
+      </div>
+    </section>
+
+    <section class="employees flex">
+      <div *ngIf="employeeOfTheMonth" class="employee-of-the-month">
+        <div class="card flex mt-5">
+          <h5 class="mt-2">موظف الشهر</h5>
+          <img src="/images/avatar.jpg" alt="personal image" />
+          <div class="stars flex">
+            <mat-icon *ngFor="let star of stars">star</mat-icon>
+          </div>
+          <h3 class="mt-3">
+            {{ employeeOfTheMonth.username }}
+          </h3>
+        </div>
+      </div>
+
+      <div class="chart">
+        <canvas
+          baseChart
+          [data]="barChartData"
+          [options]="barChartOptions"
+          [type]="'bar'"
+        >
+        </canvas>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,21 +1,18 @@
 <div class="confirm-dialog">
-  <header>
+  <div class="close-icon">
+    <mat-icon mat-dialog-close>close</mat-icon>
+  </div>
+  <header class="flex-column">
     <h5>{{ data.message | translate }}</h5>
   </header>
 
   <footer>
     <div class="flex-center mt-3">
-      <button
-        mat-flat-button
-        class="btn-warning mx-2"
-        [mat-dialog-close]="true"
-      >
-
+      <button mat-flat-button class="btn-red mx-2" [mat-dialog-close]="true">
         {{ "general.yes" | translate }}
       </button>
 
       <button mat-flat-button class="btn-green" mat-dialog-close>
-
         {{ "general.no" | translate }}
       </button>
     </div>

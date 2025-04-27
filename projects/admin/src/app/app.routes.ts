@@ -7,6 +7,7 @@ import { MainLayoutComponent } from './layout/components/main-layout/main-layout
 import { AuthLayoutComponent } from './layout/components/auth-layout/auth-layout.component';
 import { authGuard } from './core/guards/auth.guard';
 import { ErrorPageComponent } from './pages/error-page/components/error-page/error-page.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,7 @@ export const routes: Routes = [
     component: MainLayoutComponent, // يستخدم الـ Layout مع الـ Navbar
     canActivateChild: [authGuard],
     children: [
+      { path: 'dashboard', component: DashboardComponent },
       { path: 'users', component: UsersComponent },
       { path: 'add-task', component: AddTaskComponent },
       { path: 'list-tasks', component: ListTasksComponent },

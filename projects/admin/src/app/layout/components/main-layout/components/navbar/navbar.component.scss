@@ -1,24 +1,58 @@
-nav {
-  background-color: var(--primary-color);
-  padding: 10px 20px;
-  .navbar-brand {
-    font-size: 27px;
-    font-weight: bold;
-    color: #fad7c4 !important;
-    margin: 0;
-  }
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-  }
-  a {
-    font-size: 18px;
-    color: var(--white) !important;
-    transition: transform 0.2s ease-in-out;
-    min-width: 80px;
-    text-align: center;
-    &.active {
-      border-bottom: 1px solid var(--white);
+
+.layout {
+  display: flex;
+  flex-direction: column;
+
+  .top-navbar {
+    height: 60px;
+    box-shadow: var(--shadow);
+    background-color: #f8f8f8;
+    .site-title {
       font-weight: bold;
+      font-size: 24px;
+    }
+    .welcome-message {
+      font-size: 18px;
+    }
+  }
+
+  .sidebar {
+    position: absolute;
+    box-shadow: var(--shadow);
+    background-color: var(--primary-color);
+    z-index: 1;
+    border-radius: 0 0 90px 90px;
+    height: 340px;
+    .sidebar-container {
+      color: var(--white);
+      width: 50px;
+      transition: width 0.3s ease;
+      padding-top: 20px;
+
+      &.expanded {
+        width: 200px;
+      }
+
+      .nav-links {
+        padding: 0;
+
+        li {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 12px;
+          transition: background 0.2s;
+
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+          }
+
+          &.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            font-weight: bold;
+          }
+        }
+      }
     }
   }
 }

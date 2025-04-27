@@ -41,7 +41,7 @@ import { ConfirmDialogComponent } from '../../../../shared/components/confirm-di
 })
 export class ListTasksComponent implements OnInit {
   tableColumns = [
-    { def: 'position', header: 'general.img', type: 'image', field: 'image' },
+    { def: 'position', header: '#', type: 'image', field: 'image' },
     { def: 'title', header: 'tasks.title', type: 'text', field: 'title' },
     { def: 'user', header: 'tasks.user', type: 'text', field: 'username' },
     {
@@ -56,8 +56,8 @@ export class ListTasksComponent implements OnInit {
       header: 'tasks.actions',
       isAction: true,
       actions: [
-        { type: 'edit', icon: 'edit', class: 'secondary-btn' },
-        { type: 'delete', icon: 'delete', class: 'btn-warning' },
+        { type: 'edit', icon: 'edit', class: 'gray-btn' },
+        { type: 'delete', icon: 'delete', class: 'delete-icon' },
       ],
     },
   ];
@@ -85,12 +85,11 @@ export class ListTasksComponent implements OnInit {
     public dialog: MatDialog,
     private toast: ToastService,
     private userService: UsersService
-  ) {
-    this.getDataFromSubject();
-  }
+  ) {}
 
   ngOnInit(): void {
     this.getUsers();
+    this.getDataFromSubject();
     this.getAllTasks();
   }
 

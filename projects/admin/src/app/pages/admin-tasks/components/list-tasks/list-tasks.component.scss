@@ -12,9 +12,12 @@
       flex-wrap: wrap;
       gap: 10px;
       div {
-        width: 250px;
+        width: 235px;
         mat-form-field {
           width: 100%;
+          .search-icon {
+            font-size: 25px;
+          }
           input {
             width: 100% ;
           }

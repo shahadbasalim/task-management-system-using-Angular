@@ -23,7 +23,8 @@
   "navbar": {
     "title": "Tasks Manager",
     "all-tasks": "All Tasks",
-    "logout": "Logout"
+    "logout": "Logout",
+    "welcome": "Welcome"
   },
 
   "tasks": {
