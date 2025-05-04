@@ -4,14 +4,20 @@ import { TasksService } from '../../services/tasks.service';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { flipInXOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-task-details',
-  imports: [ TranslateModule, CommonModule],
+  imports: [ TranslateModule, CommonModule, MatIconModule],
   templateUrl: './task-details.component.html',
-  styleUrl: './task-details.component.scss'
+  styleUrl: './task-details.component.scss',
+  animations: [flipInXOnEnterAnimation()],
+
 })
 export class TaskDetailsComponent {
+  CONDITION: boolean = true;
+
   taskId!: string;
   taskDetails : any;
 

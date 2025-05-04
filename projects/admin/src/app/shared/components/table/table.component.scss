@@ -1,10 +1,17 @@
+.table-container {
+  border-radius: 10px !important;
+  overflow-y: hidden;
+
+}
 :host ::ng-deep {
   table {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border: 1px solid #bbb;
     th {
       background-color:var(--secondary-color) !important;
       color: var(--white) !important;
       text-align: center !important;
+
     }
     td {
       text-align: center !important;

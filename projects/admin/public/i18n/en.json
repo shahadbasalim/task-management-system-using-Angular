@@ -14,7 +14,6 @@
     "logout": "Logout",
     "welcome": "Welcome",
     "dashboard": "Dashboard"
-
   },
 
   "tasks": {
@@ -39,11 +38,10 @@
     "description": "Description",
     "discard-change": "Are You Sure That You Want To Discard Your Changes ?",
     "name": "الاسم",
-    "tasksAssigned"	: "Tasks Assigned"
+    "tasksAssigned": "Tasks Assigned"
   },
 
   "users": {},
-
 
   "general": {
     "loading": "Loading",
@@ -63,12 +61,23 @@
     "email": "Email",
     "active": "Active",
     "in-active": "In-Active",
-    "discard-change" : "Are You Sure That You Want To Discard Your Changes ?",
-   "confirm-delete-message" : "Are You Sure That You Want To Delete ?"
-
+    "discard-change": "Are You Sure That You Want To Discard Your Changes ?",
+    "confirm-delete-message": "Are You Sure That You Want To Delete ?"
   },
 
   "toaster": {},
 
-  "buttons": {}
+  "buttons": {},
+
+  "dashboard": {
+    "welcome": "Welcome To The",
+    "tasks-management-system": "Task Management System",
+    "message": "Here you can monitor employee performance and assign tasks with ease and professionalism!",
+    "new-task": "Create New Task",
+    "employees": "Employees",
+    "completed-tasks": "Completed Tasks",
+    "in-progress-tasks": "In-Progress Tasks",
+    "current-time": "Current Time",
+    "month-employee": "Employee of the Month"
+  }
 }

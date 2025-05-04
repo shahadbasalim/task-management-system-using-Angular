@@ -1,6 +1,6 @@
-<div class="login flex-center">
-  <div class="login-container flex">
-    <div class="box flex-column">
+<div class="login flex">
+  <div class="login-container flex" *ngIf="CONDITION" [@fadeInLeftOnEnter]>
+    <div class="box flex-column card">
       <h2>{{ "register.title" | translate }}</h2>
       <form [formGroup]="registerForm">
         <mat-form-field  class="w-100">

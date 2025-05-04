@@ -1,6 +1,6 @@
 <div class="login flex-center">
-  <div class="login-container flex">
-    <div class="card flex-column">
+  <div class="login-container flex" *ngIf="CONDITION" [@fadeInLeftOnEnter]>
+    <div class="box card flex-column">
       <h2>{{ 'login.title' | translate }}</h2>
       <form [formGroup]="loginForm">
         <mat-form-field  class="w-100">
@@ -29,6 +29,6 @@
         <button class="main-btn" (click)="login()">{{ 'login.login' | translate }}</button>
       </div>
     </div>
-    <img src="/images/employee.png" alt="employee using computer" />
+    <img src="/images/employee.png" alt="employee using computer"/>
   </div>
 </div>

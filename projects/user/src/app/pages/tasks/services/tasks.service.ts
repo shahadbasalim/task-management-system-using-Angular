@@ -10,9 +10,9 @@ export class TasksService {
 
   getUserTasks(userId: string, tasksParams: any) {
     let params = new HttpParams();
-    Object.entries(tasksParams).forEach(([key, value]: any) => {
-      params = params.append(key, value);
-    });
+      Object.entries(tasksParams).forEach(([key, value]: any) => {
+        params = params.append(key, value);
+      });
     return this.http.get(environment.baseApi + '/user-tasks/' + userId, {
       params,
     });

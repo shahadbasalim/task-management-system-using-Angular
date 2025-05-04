@@ -15,6 +15,10 @@
         <li (click)="toggleSidebar()">
           <mat-icon> menu_open </mat-icon>
         </li>
+        <li routerLink="/dashboard" routerLinkActive="active">
+          <mat-icon>dashboard</mat-icon>
+          <span *ngIf="isExpanded">{{ "navbar.dashboard" | translate }}</span>
+        </li>
         <li routerLink="/list-tasks" routerLinkActive="active">
           <mat-icon>assignment</mat-icon>
           <span *ngIf="isExpanded">{{ "navbar.all-tasks" | translate }}</span>

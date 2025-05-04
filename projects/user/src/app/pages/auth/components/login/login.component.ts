@@ -14,6 +14,7 @@ import { Login } from '../../models/DTOs';
 import { LoginService } from '../../services/login.service';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { fadeInLeftOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +28,12 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+  animations: [fadeInLeftOnEnterAnimation()],
+
 })
 export class LoginComponent implements OnInit {
+  CONDITION: boolean = true;
+
   loginForm!: FormGroup;
 
   constructor(
@@ -59,7 +64,7 @@ export class LoginComponent implements OnInit {
       console.log(res);
       localStorage.setItem('token', res.token);
       this.toast.show('Login successful', 'success');
-      this.router.navigate(['/list-tasks']);
+      this.router.navigate(['/dashboard']);
     });
   }
 }

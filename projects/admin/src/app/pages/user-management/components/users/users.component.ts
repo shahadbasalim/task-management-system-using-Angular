@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { fadeInDownOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-users',
@@ -26,8 +27,12 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
+  animations: [fadeInDownOnEnterAnimation()],
+
 })
 export class UsersComponent implements OnInit {
+  CONDITION: boolean = true;
+
   tableColumns = [
     { def: 'position', header: '#', type: 'index' },
     { def: 'name', header: 'tasks.name', type: 'text', field: 'username' },

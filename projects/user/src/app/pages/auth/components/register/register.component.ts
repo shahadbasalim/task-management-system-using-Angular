@@ -16,6 +16,7 @@ import { CreateAccount } from '../../models/DTOs';
 import { CommonModule } from '@angular/common';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { TranslateModule } from '@ngx-translate/core';
+import { fadeInLeftOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-register',
@@ -29,8 +30,12 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
+  animations: [fadeInLeftOnEnterAnimation()],
+
 })
 export class RegisterComponent implements OnInit {
+  CONDITION: boolean = true;
+
   registerForm!: FormGroup;
 
   constructor(
@@ -67,7 +72,7 @@ export class RegisterComponent implements OnInit {
       console.log(res);
       localStorage.setItem('token', res.token);
       this.toast.show('Account created successfully', 'success');
-      this.router.navigate(['/list-tasks']);
+      this.router.navigate(['/dashboard']);
     });
   }
 

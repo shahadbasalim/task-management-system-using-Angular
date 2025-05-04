@@ -1,18 +1,28 @@
-<div class="container mb-5">
-  <div class="d-flex justify-content-between align-items-baseline my-3">
-    <h1 class="card-title">{{ taskDetails?.title }}</h1>
-    <button
-      mat-flat-button
-      class="btn-green py-1 px-5 mx-2"
-      (click)="complete()"
-    >
-      {{ "general.complete" | translate }}
-    </button>
+<div class="container mb-5 task-details" *ngIf="CONDITION" [@flipInXOnEnter]>
+  <div class=" container">
+    <div class="btn-container flex my-3">
+      <button
+        mat-flat-button
+        class="btn-green py-1"
+        (click)="complete()"
+        *ngIf="taskDetails?.status !== 'Complete'"
+      >
+        {{ "general.complete" | translate }}
+      </button>
+    </div>
+    <div class="title-deadline-container">
+      <h1 class="card-title">{{ taskDetails?.title }}</h1>
+      <div class="flex">
+        <img src="/images/clock.gif" alt="clock" />
+        <p class="card-subtitle text-muted mx-1">
+          {{ "tasks.deadline" | translate }} : {{ taskDetails?.deadline }}
+        </p>
+      </div>
+    </div>
+    <hr />
+    <div class="description-container">
+      <h5 class="description">{{ "tasks.description" | translate }} :</h5>
+      <p class="card-text">{{ taskDetails?.description }}</p>
+    </div>
   </div>
-  <p class="card-subtitle mb-2 text-muted">
-    {{ "tasks.deadline" | translate }} : {{ taskDetails?.deadline }}
-  </p>
-  <hr />
-  <h5 class="description">{{ "tasks.description" | translate }} :</h5>
-  <p class="card-text">{{ taskDetails?.description }}</p>
 </div>

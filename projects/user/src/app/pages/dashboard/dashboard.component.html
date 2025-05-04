@@ -1,0 +1,37 @@
+<div class="dashboard">
+  <div class="container my-4">
+    <section class="hero flex">
+      <div class="content">
+        <h5>{{ "dashboard.welcome" | translate }}</h5>
+        <h1 class="typewriter my-4">
+          {{ "dashboard.tasks-management-system" | translate }}
+        </h1>
+        <h5>{{ "dashboard.message" | translate }}</h5>
+        <button class="main-btn mt-3" [routerLink]="['/list-tasks']">
+          {{ "dashboard.see-tasks" | translate }}
+        </button>
+      </div>
+      <img src="/images/list-tasks.gif" alt="list of tasks" class="mt-5" />
+    </section>
+    <hr />
+    <section class="stats flex my-5" *ngIf="CONDITION" [@fadeInRightOnEnter]>
+      <div class="stats-container">
+        <div class="card flex-center">
+          <div><mat-icon>assignment</mat-icon></div>
+          <h3 class="m-0">{{ totalInProgressTasks }}</h3>
+          <p class="m-0">{{ "dashboard.in-progress-tasks" | translate }}</p>
+        </div>
+        <div class="card time-card flex-center mt-5 py-2">
+          <p>{{ "dashboard.current-time" | translate }}</p>
+          <div class="time">{{ currentTime }}</div>
+        </div>
+      </div>
+
+      <div class="date card">
+        <mat-card class="demo-inline-calendar-card">
+          <mat-calendar></mat-calendar>
+        </mat-card>
+      </div>
+    </section>
+  </div>
+</div>

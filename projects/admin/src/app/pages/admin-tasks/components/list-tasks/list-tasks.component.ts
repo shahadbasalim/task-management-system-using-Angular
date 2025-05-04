@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { UsersService } from '../../../user-management/services/users.service';
 import { TableComponent } from '../../../../shared/components/table/table.component';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
+import { fadeInDownOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-list-tasks',
@@ -38,8 +39,11 @@ import { ConfirmDialogComponent } from '../../../../shared/components/confirm-di
   ],
   templateUrl: './list-tasks.component.html',
   styleUrl: './list-tasks.component.scss',
+  animations: [fadeInDownOnEnterAnimation()],
 })
 export class ListTasksComponent implements OnInit {
+  CONDITION: boolean = true;
+
   tableColumns = [
     { def: 'position', header: '#', type: 'image', field: 'image' },
     { def: 'title', header: 'tasks.title', type: 'text', field: 'title' },

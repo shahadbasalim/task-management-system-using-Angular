@@ -39,8 +39,10 @@ import { ConfirmDialogComponent } from '../../../../shared/components/confirm-di
   ],
   templateUrl: './add-task.component.html',
   styleUrl: './add-task.component.scss',
+
 })
 export class AddTaskComponent implements OnInit {
+
   newTaskForm!: FormGroup;
   fileName: string = '';
   formValues: any; // save the values that user enter in the form

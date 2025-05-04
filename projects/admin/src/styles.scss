@@ -5,12 +5,14 @@
   --white: #fff;
   --border: #ddd;
   --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  --border-radius: 6px;
+  --border-radius: 16px;
 }
 body {
   font-family: "IBM Plex Sans Arabic", sans-serif !important;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+
 }
 th,
 td {
@@ -205,7 +207,15 @@ mat-error {
 // card
 .card {
   border-top: 5px solid var(--secondary-color) !important;
+  border-bottom: 5px solid var(--secondary-color) !important;
   box-shadow: var(--shadow) !important;
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+  text-align: center;
+  padding: 10px;
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 // calendar
@@ -215,3 +225,4 @@ mat-error {
   background-color: var(--primary-color) !important;
   color: var(--white) !important;
 }
+

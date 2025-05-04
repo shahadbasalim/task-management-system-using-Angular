@@ -1,66 +1,67 @@
-<!-- shared/components/table/table.component.html -->
-<table
-  mat-table
-  [dataSource]="dataSource"
-  class="mat-elevation-z8 w-100 table table-hover table-striped"
->
-  <!-- Dynamic columns -->
-  <ng-container *ngFor="let column of columns" [matColumnDef]="column.def">
-    <th mat-header-cell *matHeaderCellDef>
-      {{ column.header | translate }}
-    </th>
-    <td mat-cell *matCellDef="let element; let index = index">
-      <ng-container *ngIf="!column.isAction">
-        <!-- Regular column content -->
-        <ng-container *ngIf="column.type === 'index'">
-          {{ (page - 1) * limit + index + 1 }}
-        </ng-container>
-        <ng-container *ngIf="column.type === 'text'">
-          {{ element[column.field] }}
-        </ng-container>
-        <ng-container *ngIf="column.type === 'image'">
-          <img
-            [src]="'https://crud-a325.onrender.com/' + element[column.field]"
-            alt="task image"
-          />
-        </ng-container>
-      </ng-container>
-
-      <!-- في جزء الأزرار -->
-      <ng-container *ngIf="column.isAction">
-        <div class="flex-center">
-          <ng-container *ngFor="let action of column.actions">
-            <button
-              *ngIf="!action.showIf || action.showIf(element)"
-              mat-raised-button
-              [class]="action.class"
-              (click)="onAction(action.type, element, action)"
-            >
-              <mat-icon *ngIf="action.icon">{{ action.icon }}</mat-icon>
-              <span *ngIf="action.label">{{ action.label | translate }}</span>
-            </button>
+<div class="table-container">
+  <table
+    mat-table
+    [dataSource]="dataSource"
+    class="mat-elevation-z8 w-100 table table-hover table-striped"
+  >
+    <!-- Dynamic columns -->
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column.def">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ column.header | translate }}
+      </th>
+      <td mat-cell *matCellDef="let element; let index = index">
+        <ng-container *ngIf="!column.isAction">
+          <!-- Regular column content -->
+          <ng-container *ngIf="column.type === 'index'">
+            {{ (page - 1) * limit + index + 1 }}
           </ng-container>
-        </div>
-      </ng-container>
-    </td>
-  </ng-container>
+          <ng-container *ngIf="column.type === 'text'">
+            {{ element[column.field] }}
+          </ng-container>
+          <ng-container *ngIf="column.type === 'image'">
+            <img
+              [src]="'https://crud-a325.onrender.com/' + element[column.field]"
+              alt="task image"
+            />
+          </ng-container>
+        </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="getColumnDefs()"></tr>
-  <tr
-    mat-row
-    *matRowDef="
-      let row;
-      columns: getColumnDefs()
-        | paginate
-          : {
-              id: paginationId,
-              itemsPerPage: limit,
-              currentPage: page,
-              totalItems: totalItems
-            }
-    "
-  ></tr>
-</table>
+        <!-- في جزء الأزرار -->
+        <ng-container *ngIf="column.isAction">
+          <div class="flex-center">
+            <ng-container *ngFor="let action of column.actions">
+              <button
+                *ngIf="!action.showIf || action.showIf(element)"
+                mat-raised-button
+                [class]="action.class"
+                (click)="onAction(action.type, element, action)"
+              >
+                <mat-icon *ngIf="action.icon">{{ action.icon }}</mat-icon>
+                <span *ngIf="action.label">{{ action.label | translate }}</span>
+              </button>
+            </ng-container>
+          </div>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="getColumnDefs()"></tr>
+    <tr
+      mat-row
+      *matRowDef="
+        let row;
+        columns: getColumnDefs()
+          | paginate
+            : {
+                id: paginationId,
+                itemsPerPage: limit,
+                currentPage: page,
+                totalItems: totalItems
+              }
+      "
+    ></tr>
+  </table>
+</div>
 
 <!-- Pagination -->
 <div class="my-5 pagintaion-container" *ngIf="dataSource.length > 0">

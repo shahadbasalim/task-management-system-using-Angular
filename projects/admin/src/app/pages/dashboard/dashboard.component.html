@@ -1,55 +1,44 @@
 <div class="dashboard flex-center">
   <div class="container my-4">
-    <section class="hero flex">
+    <section class="hero flex mx-4">
       <div class="content">
-        <h5>أهلاً بك في</h5>
-        <h1 class="typewriter my-4">نظام إدارة المهام</h1>
+        <h5>{{ "dashboard.welcome" | translate }}</h5>
+        <h1 class="typewriter my-4">
+          {{ "dashboard.tasks-management-system" | translate }}
+        </h1>
         <h5>
-          هنا يمكنك متابعة أداء الموظفين، وتعيين المهام بكل سهولة واحترافية!
+          {{ "dashboard.message" | translate }}
         </h5>
         <button class="main-btn mt-3" [routerLink]="['/list-tasks']">
-          انشاء مهمة جديدة
+          {{ "dashboard.new-task" | translate }}
         </button>
       </div>
       <img src="/images/list-tasks.gif" alt="list of tasks" class="mt-5" />
     </section>
     <hr />
-    <section class="stats flex my-5">
+    <section class="stats flex my-5" *ngIf="CONDITION" [@fadeInDownOnEnter]>
       <div class="stats-container">
         <div class="cards flex">
-          <div *ngFor="let card of cardsData" class="card flex-center ">
-            <mat-icon>{{ card.icon }}</mat-icon>
+          <div *ngFor="let card of cardsData" class="stat card flex-center">
+            <div><mat-icon>{{ card.icon }}</mat-icon></div>
             <h3 class="m-0">{{ card.value }}</h3>
-            <p class="m-0">{{ card.label }}</p>
+            <p class="m-0">{{ card.label | translate }}</p>
           </div>
         </div>
         <div class="card time-card flex mt-5 py-2">
-          <p>الساعة الان</p>
+          <p>{{ "dashboard.current-time" | translate }}</p>
           <div class="time">{{ currentTime }}</div>
         </div>
       </div>
 
-      <div class="date">
+      <div class="date card">
         <mat-card class="demo-inline-calendar-card">
           <mat-calendar></mat-calendar>
         </mat-card>
       </div>
     </section>
 
-    <section class="employees flex">
-      <div *ngIf="employeeOfTheMonth" class="employee-of-the-month">
-        <div class="card flex mt-5">
-          <h5 class="mt-2">موظف الشهر</h5>
-          <img src="/images/avatar.jpg" alt="personal image" />
-          <div class="stars flex">
-            <mat-icon *ngFor="let star of stars">star</mat-icon>
-          </div>
-          <h3 class="mt-3">
-            {{ employeeOfTheMonth.username }}
-          </h3>
-        </div>
-      </div>
-
+    <section class="employees flex" *ngIf="CONDITION" [@fadeInDownOnEnter]>
       <div class="chart">
         <canvas
           baseChart
@@ -58,6 +47,18 @@
           [type]="'bar'"
         >
         </canvas>
+      </div>
+      <div *ngIf="employeeOfTheMonth" class="employee-of-the-month">
+        <div class="card flex mt-5">
+          <h5 class="mt-2">{{ "dashboard.month-employee" | translate }}</h5>
+          <img src="/images/avatar.jpg" alt="personal image" />
+          <div class="stars flex">
+            <mat-icon *ngFor="let star of stars">star</mat-icon>
+          </div>
+          <h3 class="mt-3">
+            {{ employeeOfTheMonth.username }}
+          </h3>
+        </div>
       </div>
     </section>
   </div>

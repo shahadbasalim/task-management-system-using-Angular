@@ -13,7 +13,7 @@ import { ToastService } from '../../../../shared/services/toast.service';
 import { LoginResponse } from '../../models/DTOs';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-
+import { fadeInLeftOnEnterAnimation } from 'angular-animations';
 @Component({
   selector: 'app-login',
   imports: [
@@ -25,8 +25,12 @@ import { CommonModule } from '@angular/common';
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
+    animations: [fadeInLeftOnEnterAnimation()],
+
 })
 export class LoginComponent implements OnInit {
+  CONDITION: boolean = true;
+
   loginForm!: FormGroup;
 
   constructor(

@@ -6,7 +6,6 @@
     "password": "كلمة المرور",
     "login": "دخول",
     "create-account": "إنشاء حساب؟"
-
   },
 
   "register": {
@@ -23,7 +22,8 @@
     "title": "مدير المهام",
     "all-tasks": "جميع المهام",
     "logout": "تسجيل الخروج",
-    "welcome": "اهلاً بك"
+    "welcome": "اهلاً بك",
+    "dashboard": "لوحة التحكم"
   },
 
   "tasks": {
@@ -34,7 +34,6 @@
     "status": "الحالة",
     "noData": "لا توجد مهام"
   },
-
 
   "general": {
     "loading": "جاري التحميل",
@@ -52,5 +51,17 @@
     "page-not-found": "الصفحة غير موجودة",
     "return": "رجوع",
     "required": "هذا الحقل مطلوب"
+  },
+
+  "dashboard": {
+    "welcome": "مرحبا بك في",
+    "tasks-management-system": "نظام إدارة المهام",
+    "message": "هنا يمكنك متابعة أداء الموظفين، وتعيين المهام بكل سهولة واحترافية!",
+    "see-tasks": "لمشاهدة جميع المهام",
+    "employees": "موظفين",
+    "completed-tasks": "مهام مكتملة",
+    "in-progress-tasks": "مهام قيد التنفيذ",
+    "current-time": "الساعة الان",
+    "month-employee": "موظف الشهر"
   }
 }

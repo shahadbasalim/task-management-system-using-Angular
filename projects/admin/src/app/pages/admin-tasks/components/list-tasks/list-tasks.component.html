@@ -1,5 +1,5 @@
 <div class="list-tasks flex-center">
-  <div class="container">
+  <div class="container" *ngIf="CONDITION" [@fadeInDownOnEnter]>
     <div>
       <div class="add-task-btn flex">
         <button class="main-btn" mat-raised-button (click)="addTask()">

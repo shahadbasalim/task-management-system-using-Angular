@@ -24,7 +24,8 @@
     "title": "Tasks Manager",
     "all-tasks": "All Tasks",
     "logout": "Logout",
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "dashboard": "Dashboard"
   },
 
   "tasks": {
@@ -50,8 +51,19 @@
     "complete": "Complete",
     "error": "Error",
     "page-not-found": "Page Not Found",
-    "return": "Return To Home",
+    "return": "Return",
     "required": "This field is required"
 
+  },
+  "dashboard": {
+    "welcome": "Welcome To The",
+    "tasks-management-system": "Task Management System",
+    "message": "Here you can monitor employee performance and assign tasks with ease and professionalism!",
+    "see-tasks": "See All Tasks",
+    "employees": "Employees",
+    "completed-tasks": "Completed Tasks",
+    "in-progress-tasks": "In-Progress Tasks",
+    "current-time": "Current Time",
+    "month-employee": "Employee of the Month"
   }
 }

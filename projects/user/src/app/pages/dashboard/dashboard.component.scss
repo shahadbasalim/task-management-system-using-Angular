@@ -9,25 +9,22 @@
       color: var(--secondary-color);
       font-weight: bold;
       border-inline-start: 2px solid var(--primary-color);/* لمحاكاة المؤشر */
-
       display: inline-block;
       overflow: hidden;
       white-space: nowrap;
-      animation: typing 5s steps(30, end) 1s forwards,
+      animation: typing 3s steps(30, end) 1s forwards,
         blink-caret 0.75s step-end infinite;
     }
   }
   .stats {
     justify-content: space-around;
+    gap: 30px;
     .stats-container {
-      .cards {
-        gap: 20px;
-        .card {
-          width: 160px;
-          height: 100px;
-          h3 {
-            color: var(--primary-color);
-          }
+      flex-grow: 1;
+      .card {
+
+        h3 {
+          color: var(--primary-color);
         }
       }
       .card.time-card {
@@ -40,28 +37,9 @@
     .date {
       .demo-inline-calendar-card {
         width: 300px;
+        background-color: var(--white);
+
       }
-    }
-  }
-  .employees {
-    justify-content: space-around;
-    gap: 20px;
-    .employee-of-the-month {
-      width: 30%;
-      .card {
-        img {
-          width: 100px;
-          height: 100px;
-          border-radius: 50%;
-          border: 3px solid var(--secondary-color);
-        }
-        .stars {
-          color: #ebb22c !important;
-        }
-      }
-    }
-    .chart {
-      width: 60%;
     }
   }
 }
@@ -86,6 +64,8 @@
   }
 }
 
+
+
 // media queries
 @media (max-width: 992px) {
   .dashboard {
@@ -95,17 +75,7 @@
         display: none;
       }
     }
-    .employees {
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      .employee-of-the-month {
-        width: 100%;
-      }
-      .chart {
-        width: 100%;
-      }
-    }
+
   }
 }
 @media (max-width: 800px) {
@@ -117,6 +87,7 @@
       .content {
         text-align: center;
         margin: 0 20px;
+        padding: 0 20px;
         h5 {
           font-size: 15px;
         }
@@ -130,18 +101,4 @@
     }
   }
 }
-@media (max-width: 768px) {
-  .dashboard {
-    .stats {
-      .stats-container {
-        flex-grow: 1;
-        .cards {
-          flex-direction: column;
-          .card.stat {
-            width: 100% !important;
-          }
-        }
-      }
-    }
-  }
-}
+

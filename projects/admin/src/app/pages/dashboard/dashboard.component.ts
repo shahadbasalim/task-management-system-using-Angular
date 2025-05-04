@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
 import { UsersService } from '../user-management/services/users.service';
 import { CommonModule } from '@angular/common';
@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatCardModule } from '@angular/material/card';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { fadeInDownOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,8 +25,11 @@ import { provideNativeDateAdapter } from '@angular/material/core';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
   providers: [provideNativeDateAdapter()],
+  animations: [fadeInDownOnEnterAnimation()],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+  CONDITION: boolean = true;
+
   usersDataSource: any[] = [];
   totalUsers: number = 0;
   employeeOfTheMonth: any;
@@ -37,12 +41,6 @@ export class DashboardComponent {
   barChartData: any;
 
   currentTime: any;
-
-  cardsData = [
-    { icon: 'groups', value: this.totalUsers, label: 'موظفين' },
-    { icon: 'done_all', value: this.completedTasks.length, label: 'مهام مكتملة' },
-    { icon: 'timeline', value: this.unCompletedTasks.length, label: 'مهام قيد التنفيذ' }
-  ];
 
   stars = Array(5);
   constructor(
@@ -60,7 +58,23 @@ export class DashboardComponent {
     }, 1000); // تحديث الوقت كل ثانية
   }
 
-  // get all tasks
+  get cardsData() {
+    return [
+      { icon: 'groups', value: this.totalUsers, label: 'dashboard.employees' },
+      {
+        icon: 'done_all',
+        value: this.completedTasks.length,
+        label: 'dashboard.completed-tasks',
+      },
+      {
+        icon: 'timeline',
+        value: this.unCompletedTasks.length,
+        label: 'dashboard.in-progress-tasks',
+      },
+    ];
+  }
+
+  // get tasks
   getAllTasks() {
     this.taskService.getAllTasks().subscribe((res: any) => {
       console.log('get tasks', res);
@@ -74,7 +88,7 @@ export class DashboardComponent {
     });
   }
 
-  // get users and assigned tasks
+  // get users
   getUsers() {
     this.userService.getUsersData();
   }
@@ -89,7 +103,7 @@ export class DashboardComponent {
         labels: this.usersDataSource.map((item: any) => item.username),
         datasets: [
           {
-            label: 'عدد المهام المسندة لكل موظف',
+            label: 'The number of tasks assigned to each employee | عدد المهام المسندة لكل موظف',
             data: this.usersDataSource.map((item: any) => item.assignedTasks),
             // bar chart style
             backgroundColor: 'rgba(0, 49, 139, 0.3)',
@@ -117,12 +131,12 @@ export class DashboardComponent {
       x: {
         ticks: { color: '#333' },
         grid: { color: '#eee' },
-        border: { color: '#333'},
+        border: { color: '#333' },
       },
       y: {
         ticks: { color: '#333' },
         grid: { color: '#eee' },
-        border: { color: '#333'},
+        border: { color: '#333' },
       },
     },
   };

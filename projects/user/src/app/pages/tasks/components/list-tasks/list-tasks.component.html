@@ -1,5 +1,5 @@
 <div class="list-tasks flex-center">
-  <div class="container">
+  <div class="container"  *ngIf="CONDITION" [@fadeInRightOnEnter]>
     <div>
       <div class="form-container p-3">
         <form>
@@ -20,7 +20,7 @@
 
       <div class="tasks-container flex-center">
         <div
-          class="task-card"
+          class="task-card card"
           *ngFor="
             let item of dataSource
               | paginate
@@ -50,7 +50,7 @@
             <div class="d-flex justify-content-center align-items-center">
               <button
                 mat-flat-button
-                class="btn-pink  mx-2"
+                class="btn-skyblue  mx-2"
                 [routerLink]="['/task-details', item._id]"
               >
                 {{ "general.details" | translate }}
@@ -59,6 +59,7 @@
                 mat-flat-button
                 class="btn-green  mx-2"
                 (click)="complete(item)"
+                *ngIf="item.status !== 'Complete'"
               >
                 {{ "general.complete" | translate }}
               </button>

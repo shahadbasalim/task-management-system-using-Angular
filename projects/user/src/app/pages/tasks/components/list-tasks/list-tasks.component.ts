@@ -2,12 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { TasksService } from '../../services/tasks.service';
 import { ToastService } from '../../../../shared/services/toast.service';
 import { RouterModule } from '@angular/router';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { AuthService } from '../../../auth/services/auth.service';
+import { fadeInRightOnEnterAnimation } from 'angular-animations';
 
 @Component({
   selector: 'app-list-tasks',
@@ -21,8 +23,12 @@ import { MatSelectModule } from '@angular/material/select';
   ],
   templateUrl: './list-tasks.component.html',
   styleUrl: './list-tasks.component.scss',
+  animations: [fadeInRightOnEnterAnimation()],
+
 })
 export class ListTasksComponent implements OnInit {
+  CONDITION: boolean = true;
+
   dataSource: any = [];
   tasksFilter!: FormGroup;
 
@@ -38,20 +44,14 @@ export class ListTasksComponent implements OnInit {
   constructor(
     private service: TasksService,
     private toast: ToastService,
-    private translate: TranslateService
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.getUserData();
+    this.userData = this.authService.getUserData(); // الحصول على بيانات المستخدم من الخدمة المشتركة
     this.getAllTasks();
   }
 
-  getUserData() {
-    let token = JSON.stringify(localStorage.getItem('token'));
-    this.userData = window.atob(token.split('.')[1]);
-    this.userData = JSON.parse(window.atob(token.split('.')[1]));
-    console.log(this.userData);
-  }
 
   getAllTasks() {
     let params = {
@@ -63,7 +63,8 @@ export class ListTasksComponent implements OnInit {
       (res: any) => {
         console.log(res);
         this.dataSource = res.tasks ;
-        this.totalItems = res.total ;
+        this.totalItems = res.tasks.length;
+
       },
       (error) => {
         this.dataSource = [];

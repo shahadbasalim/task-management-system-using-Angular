@@ -1,13 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
   --primary-color: #00318b;
+  --secondary-color: rgb(0, 49, 139, 0.5);
   --white: #fff;
   --border: #ddd;
+  --shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 body {
   font-family: "IBM Plex Sans Arabic", sans-serif !important;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 th,
 td {
@@ -19,15 +23,12 @@ td {
   align-items: center;
 }
 .flex-center {
-  display: flex;
-  align-items: center;
+ @extend .flex;
   justify-content: center;
 }
 .flex-column {
+  @extend .flex-center;
   flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 a,
 button {
@@ -46,19 +47,10 @@ mat-error {
   color: rgb(214, 65, 65) !important;
 }
 
-.toast-success {
-  background-color: #45c18a !important; // أخضر - اكتمال
-  color: #fff !important;
-}
-
-.toast-error {
-  background-color: #d66767 !important; // أحمر - اخطاء
-  color: #fff !important;
-}
 
 
 // system buttons
-.main-btn, .btn-green, .btn-red, .btn-pink {
+.main-btn, .btn-green, .btn-skyblue {
   padding: 12px 24px;
   border-radius: 25px; /* حواف مستديرة بشكل أكبر */
   border: 2px solid var(--white); /* إضافة حدود */
@@ -100,7 +92,6 @@ mat-error {
 }
 
 
-
 .main-btn {
   background-color: var(--primary-color);
   &:hover {
@@ -124,72 +115,65 @@ mat-error {
   }
 }
 
-.btn-red {
-  background-color: #d66767;
+.btn-skyblue {
+  background-color: var(--secondary-color);
   &:hover {
-    color: #d66767;
-    border-color: #d66767;
+    color: #00318b80;
+    border-color: rgb(0, 49, 139, 0.5);
   }
 
   &:active {
-    background-color: #d66767;
-  }
-}
-
-.btn-pink {
-  background-color: #b5838d;
-  &:hover {
-    color: #d66767;
-    border-color: #d4af7f;
-  }
-
-  &:active {
-    background-color: #d4af7f;
+    background-color: rgb(0, 49, 139, 0.5);
   }
 }
 
 
 
-// table + card buttons
-.gray-btn, .delete-icon, .icon-green {
-  color: var(--white);
-  padding: 12px 20px;
-  border-radius: 8px;
-  border: none;
-  height: 20px;
-  margin: 0 5px;
-  font-size: 16px;
+// card
+.card {
+  border-top: 5px solid var(--secondary-color) !important;
+  border-bottom: 5px solid var(--secondary-color) !important;
+  box-shadow: var(--shadow) !important;
+  border-radius: 6px !important;
   transition: all 0.3s ease;
+  padding: 10px;
+
 
   &:hover {
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  &:active {
-    transform: translateY(2px);
-  }
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
   }
 }
 
-
-.gray-btn {
-  background-color: #9ca3af;
-  &:hover {
-    background-color: #6b7280;
-  }
+// calendar
+.mat-calendar-body-today:not(.mat-calendar-body-selected):not(
+    .mat-calendar-body-comparison-identical
+  ) {
+  background-color: var(--primary-color) !important;
+  color: var(--white) !important;
 }
 
-.delete-icon {
-  background-color: #d66767;
-  &:hover {
-    background-color: #cb3333;
-  }
+// toast styles
+.toast-success {
+  background-color: #45c18a !important; // أخضر - اكتمال
+  color: #fff !important;
 }
-.icon-green {
-  background-color: #6fbf73;
-  &:hover {
-    background-color: #18bb20;
+
+.toast-error {
+  background-color: #d66767 !important; // أحمر - اخطاء
+  color: #fff !important;
+}
+
+.ngx-toastr {
+  animation: slideDown 0.5s ease forwards;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

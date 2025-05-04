@@ -1,3 +1,32 @@
+.task-details {
+  padding: 0 30px;
+  .container {
+    padding: 0 10px;
+  }
+}
+.btn-container {
+  justify-content: end;
+}
 .description{
   text-decoration: underline;
+}
+img {
+  width: 50px;
+}
+
+// media query
+@media  (max-width: 768px) {
+  .task-details {
+    padding: 0 10px;
+    .title-deadline-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 40px;
+      .card-title {
+        text-align: center;
+        font-size: 20px;
+      }
+    }
+  }
 }
