@@ -12,7 +12,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 export const routes: Routes = [
   {
     path: '',
-    component: AuthLayoutComponent, // لا يستخدم الـ Navbar
+    component: AuthLayoutComponent, // without navbar
     children: [
       { path: '', redirectTo: 'login', pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
@@ -20,10 +20,10 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: MainLayoutComponent, // يستخدم الـ Layout مع الـ Navbar
+    component: MainLayoutComponent, // with navbar
     canActivateChild: [authGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard', loadComponent: () => import('./pages/dashboard/dashboard.component').then((m) => m.DashboardComponent) },
       { path: 'users', component: UsersComponent },
       { path: 'add-task', component: AddTaskComponent },
       { path: 'list-tasks', component: ListTasksComponent },

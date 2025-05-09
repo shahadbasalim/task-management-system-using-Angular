@@ -75,7 +75,7 @@
     width: 100%;
   }
 }
-/* حركة المؤشر */
+
 @keyframes blink-caret {
   from,
   to {
@@ -89,7 +89,6 @@
 // media queries
 @media (max-width: 992px) {
   .dashboard {
-    padding: 0 10px;
     .stats {
       .date {
         display: none;

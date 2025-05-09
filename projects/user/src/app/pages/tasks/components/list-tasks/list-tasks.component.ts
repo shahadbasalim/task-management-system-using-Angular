@@ -39,7 +39,9 @@ export class ListTasksComponent implements OnInit {
   userData: any;
   status: any[] = [{ name: 'tasks.Complete' }, { name: 'tasks.In-Progress' }];
 
-  selectedStatus: string = 'tasks.In-Progress'; // القيمة الافتراضية
+  selectedStatus: string = 'tasks.In-Progress'; // default value
+  searchText: string = '';
+
 
   constructor(
     private service: TasksService,

@@ -1,10 +1,10 @@
 <div class="layout">
   <!-- Top Navbar -->
-  <nav
-    class="top-navbar flex justify-content-between px-4"
-  >
-    <div class="site-title  mx-5">{{ "navbar.title" | translate }}</div>
-    <div class="welcome-message">{{ "navbar.welcome" | translate }} {{ userData?.email }}</div>
+  <nav class="top-navbar flex justify-content-between px-4">
+    <div class="site-title mx-5">{{ "navbar.title" | translate }}</div>
+    <div class="welcome-message">
+      {{ "navbar.welcome" | translate }} {{ userData?.email }}
+    </div>
   </nav>
 
   <!-- Sidebar  -->
@@ -12,23 +12,30 @@
     <!-- Sidebar -->
     <div class="sidebar-container" [class.expanded]="isExpanded">
       <ul class="nav-links">
+        <!-- Toggle Sidebar -->
         <li (click)="toggleSidebar()">
           <mat-icon> menu_open </mat-icon>
         </li>
-        <li routerLink="/dashboard" routerLinkActive="active">
-          <mat-icon>dashboard</mat-icon>
-          <span *ngIf="isExpanded">{{ "navbar.dashboard" | translate }}</span>
-        </li>
-        <li routerLink="/list-tasks" routerLinkActive="active">
-          <mat-icon>assignment</mat-icon>
-          <span *ngIf="isExpanded">{{ "navbar.all-tasks" | translate }}</span>
+
+        <!-- Links -->
+        <li
+          *ngFor="let link of navLinks"
+          routerLink="{{ link.route }}"
+          routerLinkActive="active"
+          (click)="onNavLinkClick()"
+
+        >
+          <mat-icon>{{ link.icon }}</mat-icon>
+          <span *ngIf="isExpanded">{{ link.label | translate }}</span>
         </li>
 
+        <!-- change language button -->
         <li (click)="changeLanguage()">
           <mat-icon>language</mat-icon>
           <span *ngIf="isExpanded">{{ lang == "en" ? "العربية" : "EN" }}</span>
         </li>
 
+        <!-- Logout button -->
         <li (click)="logout()">
           <mat-icon>logout</mat-icon>
           <span *ngIf="isExpanded">{{ "navbar.logout" | translate }}</span>

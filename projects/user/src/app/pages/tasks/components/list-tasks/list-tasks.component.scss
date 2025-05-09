@@ -24,7 +24,16 @@
       height: 200px;
       border-radius: 6px;
     }
-    h2 {
+    .badge-container {
+      justify-content: end;
+      .In-Progress {
+        background-color: #9ca3af;
+      }
+      .Complete {
+        background-color: #6fbf73;
+      }
+    }
+    .card-title {
       color: var(--primary-color);
       white-space: nowrap !important;
       overflow: hidden !important;

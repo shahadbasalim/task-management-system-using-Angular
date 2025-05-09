@@ -43,10 +43,10 @@ mat-option {
 }
 
 ::ng-deep .mat-calendar-body-in-range::before {
-  background-color: #8080804d !important; // لون أفتح للمدى
+  background-color: #8080804d !important; 
 }
 ::ng-deep .mat-calendar-body-selected {
-  background-color: var(--primary-color) !important; // لون التاريخ المختار
+  background-color: var(--primary-color) !important;
   color: var(--white) !important;
 
 }

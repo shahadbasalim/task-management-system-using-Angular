@@ -1,11 +1,11 @@
 <div class="list-tasks flex-center">
-  <div class="container"  *ngIf="CONDITION" [@fadeInRightOnEnter]>
+  <div class="container" *ngIf="CONDITION" [@fadeInRightOnEnter]>
     <div>
       <div class="form-container p-3">
         <form>
-          <div class="col-md-3 field">
-            <div class="col-md-3">
-              <mat-form-field  class="w-100">
+          <div class=" field">
+            <div >
+              <mat-form-field class="w-100">
                 <mat-label>{{ selectedStatus | translate }}</mat-label>
                 <mat-select (selectionChange)="selectStatus($event)">
                   <mat-option *ngFor="let item of status" [value]="item?.name">
@@ -40,8 +40,23 @@
                 alt="Task Image"
               />
             </div>
+            <div class="badge-container flex my-2">
+              <span
+                class="badge rounded-pill"
+                [ngClass]="{
+                  'In-Progress': item.status == 'In-Progress',
+                  Complete: item.status !== 'In-Progress'
+                }"
+              >
+                {{
+                  item.status == "In-Progress"
+                    ? ("tasks.In-Progress" | translate)
+                    : ("tasks.Complete" | translate)
+                }}
+              </span>
+            </div>
 
-            <h2 class="card-title">{{ item.title }}</h2>
+            <h5 class="card-title">{{ item.title }}</h5>
             <p class="card-subtitle mb-2 text-muted">
               {{ "tasks.deadline" | translate }} : {{ item.deadline }}
             </p>
@@ -50,14 +65,14 @@
             <div class="d-flex justify-content-center align-items-center">
               <button
                 mat-flat-button
-                class="btn-skyblue  mx-2"
+                class="btn-skyblue mx-2"
                 [routerLink]="['/task-details', item._id]"
               >
                 {{ "general.details" | translate }}
               </button>
               <button
                 mat-flat-button
-                class="btn-green  mx-2"
+                class="btn-green mx-2"
                 (click)="complete(item)"
                 *ngIf="item.status !== 'Complete'"
               >

@@ -1,14 +1,14 @@
-  h1 {
-  font-weight: bold;
+.add-task-dialog {
+  textarea {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 130px;
+    max-height: 130px;
+    resize: none;
+    padding: 10px;
+  }
 }
-textarea {
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 130px;
-  max-height: 130px;
-  resize: none;
-  padding: 10px;
-}
+
 ::ng-deep .mat-calendar,
 mat-select,
 mat-option {

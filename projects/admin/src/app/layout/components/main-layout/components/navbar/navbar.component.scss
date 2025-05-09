@@ -28,25 +28,22 @@
       width: 50px;
       transition: width 0.3s ease;
       padding-top: 20px;
-
       &.expanded {
         width: 200px;
       }
 
       .nav-links {
         padding: 0;
-
         li {
           display: flex;
           align-items: center;
           gap: 10px;
           padding: 12px;
           transition: background 0.2s;
-
+          cursor: pointer;
           &:hover {
             background-color: rgba(255, 255, 255, 0.1);
           }
-
           &.active {
             background-color: rgba(255, 255, 255, 0.2);
             font-weight: bold;

@@ -6,7 +6,13 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterModule, TranslateModule, MatIconModule, CommonModule, RouterModule],
+  imports: [
+    RouterModule,
+    TranslateModule,
+    MatIconModule,
+    CommonModule,
+    RouterModule,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
@@ -14,12 +20,24 @@ export class NavbarComponent {
   isExpanded = false;
   lang: string;
   userData: any;
+
+  navLinks = [
+    { icon: 'dashboard', label: 'navbar.dashboard', route: '/dashboard' },
+    { icon: 'assignment', label: 'navbar.all-tasks', route: '/list-tasks' },
+  ];
+
   constructor(private translate: TranslateService, private router: Router) {
     this.lang = translate.currentLang;
   }
 
   toggleSidebar() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  onNavLinkClick() {
+    if (this.isExpanded == true) {
+      this.isExpanded = false;
+    }
   }
 
   changeLanguage() {
@@ -34,6 +52,5 @@ export class NavbarComponent {
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
-
   }
 }

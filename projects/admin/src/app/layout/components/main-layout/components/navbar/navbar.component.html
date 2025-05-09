@@ -9,28 +9,29 @@
   <div class="d-flex sidebar mx-3">
     <div class="sidebar-container" [class.expanded]="isExpanded">
       <ul class="nav-links">
-        <!-- زر تصغير/تكبير القائمة -->
+        <!-- Toggle Sidebar -->
         <li (click)="toggleSidebar()">
           <mat-icon>menu_open</mat-icon>
         </li>
 
-        <!-- الروابط -->
+        <!-- Links -->
         <li
           *ngFor="let link of navLinks"
           routerLink="{{ link.route }}"
           routerLinkActive="active"
+          (click)="onNavLinkClick()"
         >
           <mat-icon>{{ link.icon }}</mat-icon>
           <span *ngIf="isExpanded">{{ link.label | translate }}</span>
         </li>
 
-        <!-- تغيير اللغة -->
+        <!-- change language button -->
         <li (click)="changeLanguage()">
           <mat-icon>language</mat-icon>
           <span *ngIf="isExpanded">{{ lang == "en" ? "العربية" : "EN" }}</span>
         </li>
 
-        <!-- تسجيل الخروج -->
+        <!-- Logout button -->
         <li (click)="logout()">
           <mat-icon>logout</mat-icon>
           <span *ngIf="isExpanded">{{ "navbar.logout" | translate }}</span>

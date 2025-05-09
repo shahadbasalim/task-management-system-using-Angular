@@ -25,6 +25,13 @@ export class NavbarComponent {
   toggleSidebar() {
     this.isExpanded = !this.isExpanded;
   }
+  
+  onNavLinkClick() {
+    if (this.isExpanded == true) {
+      this.isExpanded = false;
+    }
+  }
+
 
   constructor(private translate: TranslateService, private router: Router) {
     this.lang = translate.currentLang;
